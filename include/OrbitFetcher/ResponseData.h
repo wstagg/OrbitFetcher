@@ -4,12 +4,79 @@
 
 namespace OrbitFetcher::ResponseData
 {
+    struct TleLineOne
+    {
+        int noradId;
+        char classification;
+        std::string internationalDesignator;
+        double epochTime;
+        double firstTimeDerivative;
+        double secondTimeDerivative;
+        double bstarDragCoefficient;
+        int ephemerisType;
+        int elementSetNumber;
+        int checkSum;
+    };
+
+    struct TleLineTwo
+    {
+        int noradId;
+        double inclinationDegrees;
+        double rightAscensionDegrees;
+        int orbitEccentricity;
+        double perigeeArgumentDegrees;
+        double meanAnomalyDegrees;
+        double meanMotion; //revolutions per day
+        int totalRevolutionsAtEpoch;
+        int checkSum;
+    };
+
+    struct TleData
+    {
+        TleLineOne tleLineOne;
+        TleLineTwo tleLineTwo;
+
+        static void parseLineOne(std::string& lineOne)
+        {
+            int spacePos{};
+            std::vector<int> spacePositions;
+
+            for (const auto c : lineOne)
+            {
+                if (c == ' ')
+                {
+                    spacePositions.push_back(spacePos);
+                }
+                ++spacePos;
+            }
+
+
+
+        }
+
+        static void parseLineTwo(std::string& lineTwo)
+        {
+
+        }
+
+        static void parseTleString(const std::string& tleString)
+        {
+            const auto endOfLineOnePos = tleString.find_first_of('\r');
+            auto lineOne = tleString.substr(0, endOfLineOnePos);
+            auto lineTwo = tleString.substr(endOfLineOnePos + 2);
+
+            parseLineOne(lineOne);
+            parseLineTwo(lineTwo);
+        }
+    };
+
     struct Tle
     {
         int satId;
         std::string satName;
         int transactionCount;
         std::string tle;
+        TleData tleData;
     };
 
     struct PositionData
