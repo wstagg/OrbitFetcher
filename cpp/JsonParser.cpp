@@ -1,4 +1,5 @@
 #include "OrbitFetcher/JsonParser.h"
+#include "OrbitFetcher/TleParser.h"
 #include "nlohmann/json.hpp"
 
 
@@ -9,6 +10,11 @@ void OrbitFetcher::JsonParser::parseTle(const std::string_view& dataString, Resp
     json.at("info").at("satname").get_to(tle.satName);
     json.at("info").at("transactionscount").get_to(tle.transactionCount);
     json.at("tle").get_to(tle.tle);
+
+    if (!tle.tle.empty())
+    {
+        tle.tleData = OrbitFetcher::TleParser::parseTleString(tle.tle);
+    }
 }
 
 void OrbitFetcher::JsonParser::parseSatellitePositions(const std::string_view &dataString, OrbitFetcher::ResponseData::SatellitePosition &satellitePosition)
