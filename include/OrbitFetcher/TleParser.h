@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include <vector>
 #include "ResponseData.h"
 
 namespace OrbitFetcher
@@ -13,8 +12,10 @@ namespace OrbitFetcher
 
     private:
         static OrbitFetcher::ResponseData::TleLineOne parseLineOne(const std::string& lineOneStr);
-        static OrbitFetcher::ResponseData::TleLineTwo parseLineTwo(std::string& lineTwoStr);
-        static std::vector<std::string> splitString(const std::string& str, const char delimiter);
+        static OrbitFetcher::ResponseData::TleLineTwo parseLineTwo(const std::string& lineTwoStr);
+
+        static constexpr std::size_t LINE_ONE_LEN {69};
+        static constexpr std::size_t LINE_TWO_LEN {69};
     };
 
     struct SubstringRange
@@ -39,5 +40,19 @@ namespace OrbitFetcher
         SubstringRange ephemerisType {62, 1};
         SubstringRange elementSetNumber {64, 4};
         SubstringRange checkSum {68, 1};
+    };
+
+    struct TleLineTwoSubStringFields
+    {
+        SubstringRange lineNumber {0, 1};
+        SubstringRange satelliteNumber {2, 5};
+        SubstringRange inclinationDegrees{8, 8};
+        SubstringRange rightAscensionDegrees {17, 8};
+        SubstringRange orbitEccentricity {26, 7};
+        SubstringRange argumentOfPerigee {34, 8};
+        SubstringRange meanAnomalyDegrees {43, 8};
+        SubstringRange meanMotion {52, 11};
+        SubstringRange totalRevolutionsAtEpoch {63, 5};
+        SubstringRange checksum {68, 1};
     };
 }

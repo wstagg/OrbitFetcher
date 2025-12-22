@@ -16,7 +16,13 @@ OrbitFetcher::ResponseData::TleData OrbitFetcher::TleParser::parseTleString(cons
 OrbitFetcher::ResponseData::TleLineOne OrbitFetcher::TleParser::parseLineOne(const std::string &lineOneStr)
 {
     OrbitFetcher::ResponseData::TleLineOne lineOneData{};
-    const OrbitFetcher::TleLineOneSubStringFields subStrings;
+
+    if (lineOneStr.length() < LINE_ONE_LEN)
+    {
+        return lineOneData;
+    }
+
+    constexpr OrbitFetcher::TleLineOneSubStringFields subStrings;
 
     lineOneData.lineNumber = std::stoi(lineOneStr.substr(subStrings.lineNumber.start, subStrings.lineNumber.length));
     lineOneData.satelliteNumber = std::stoi(lineOneStr.substr(subStrings.satelliteNumber.start, subStrings.satelliteNumber.length));
@@ -36,24 +42,27 @@ OrbitFetcher::ResponseData::TleLineOne OrbitFetcher::TleParser::parseLineOne(con
     return lineOneData;
 }
 
-OrbitFetcher::ResponseData::TleLineTwo OrbitFetcher::TleParser::parseLineTwo(std::string &lineTwoStr)
+OrbitFetcher::ResponseData::TleLineTwo OrbitFetcher::TleParser::parseLineTwo(const std::string &lineTwoStr)
 {
-    return {};
-}
+    OrbitFetcher::ResponseData::TleLineTwo lineTwoData{};
 
-std::vector<std::string> OrbitFetcher::TleParser::splitString(const std::string &str, const char delimiter)
-{
-    std::istringstream lineOneStream(str);
-    std::vector<std::string> elements;
-    std::string element;
-
-    while (std::getline(lineOneStream, element, delimiter))
+    if (lineTwoStr.length() < LINE_TWO_LEN)
     {
-        if (!element.empty())
-        {
-            elements.push_back(element);
-        }
+        return lineTwoData;
     }
 
-    return elements;
+    constexpr OrbitFetcher::TleLineTwoSubStringFields subStrings;
+
+    lineTwoData.lineNumber = std::stoi(lineTwoStr.substr(subStrings.lineNumber.start, subStrings.lineNumber.length));
+    lineTwoData.satelliteNumber = std::stoi(lineTwoStr.substr(subStrings.satelliteNumber.start, subStrings.satelliteNumber.length));
+    lineTwoData.inclinationDegrees = std::stod(lineTwoStr.substr(subStrings.inclinationDegrees.start, subStrings.inclinationDegrees.length));
+    lineTwoData.rightAscensionDegrees = std::stod(lineTwoStr.substr(subStrings.rightAscensionDegrees.start, subStrings.rightAscensionDegrees.length));
+    lineTwoData.orbitEccentricity = std::stod(lineTwoStr.substr(subStrings.orbitEccentricity.start, subStrings.orbitEccentricity.length));
+    lineTwoData.argumentOfPerigee = std::stod(lineTwoStr.substr(subStrings.argumentOfPerigee.start, subStrings.argumentOfPerigee.length));
+    lineTwoData.meanAnomalyDegrees = std::stod(lineTwoStr.substr(subStrings.meanAnomalyDegrees.start, subStrings.meanAnomalyDegrees.length));
+    lineTwoData.meanMotion = std::stod(lineTwoStr.substr(subStrings.meanMotion.start, subStrings.meanMotion.length));
+    lineTwoData.totalRevolutionsAtEpoch = std::stoi(lineTwoStr.substr(subStrings.totalRevolutionsAtEpoch.start, subStrings.totalRevolutionsAtEpoch.length));
+    lineTwoData.checkSum = std::stoi(lineTwoStr.substr(subStrings.checksum.start, subStrings.checksum.length));
+
+    return lineTwoData;
 }

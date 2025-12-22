@@ -28,8 +28,8 @@ namespace OrbitFetcher::ResponseData
         int satelliteNumber;
         double inclinationDegrees;
         double rightAscensionDegrees;
-        int orbitEccentricity;
-        double ArgumentOfPerigee;
+        double orbitEccentricity;
+        double argumentOfPerigee;
         double meanAnomalyDegrees;
         double meanMotion; //revolutions per day
         int totalRevolutionsAtEpoch;
