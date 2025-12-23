@@ -70,5 +70,5 @@ BOOST_FIXTURE_TEST_CASE(testGetSatellitesAbove, DataReceiverFixture)
         OrbitFetcher::SatelliteCategory::All);
     BOOST_TEST(satellitesAbove.transactionCount >= 0);
     BOOST_TEST(!satellitesAbove.category.empty());
-    BOOST_TEST(!satellitesAbove.satelliteCount >= 0);
+    BOOST_TEST(satellitesAbove.satelliteCount >= 0);
 };

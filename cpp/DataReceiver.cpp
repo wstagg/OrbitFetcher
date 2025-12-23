@@ -52,9 +52,9 @@ OrbitFetcher::ResponseData::SatellitePosition OrbitFetcher::DataReceiver::getSat
 OrbitFetcher::ResponseData::SatellitePosition OrbitFetcher::DataReceiver::getSatellitePosition(
     const std::string& apiKey,
     const int& noradId,
-    const float& observerLat,
-    const float& observerLon,
-    const float& observerAlt,
+    const double &observerLat,
+    const double &observerLon,
+    const double &observerAlt,
     const int& seconds)
 {
     ApiCallParameters apiCallParams;
@@ -83,9 +83,9 @@ OrbitFetcher::ResponseData::SatelliteVisualPass OrbitFetcher::DataReceiver::getS
 OrbitFetcher::ResponseData::SatelliteVisualPass OrbitFetcher::DataReceiver::getSatelliteVisualPass(
     const std::string& apiKey,
     const int& noradId,
-    const float& observerLat,
-    const float& observerLon,
-    const float& observerAlt,
+    const double &observerLat,
+    const double &observerLon,
+    const double &observerAlt,
     const int& days,
     const int& minimumVisibility)
 {
@@ -114,7 +114,7 @@ OrbitFetcher::ResponseData::SatelliteRadioPass OrbitFetcher::DataReceiver::getSa
 }
 
 OrbitFetcher::ResponseData::SatelliteRadioPass OrbitFetcher::DataReceiver::getSatelliteRadioPass(const std::string& apiKey, const int& noradId,
-    const float& observerLat, const float& observerLon, const float& observerAlt, const int& days,
+    const double &observerLat, const double &observerLon, const double &observerAlt, const int& days,
     const int& minimumElevation)
 {
     ApiCallParameters apiCallParams;
@@ -142,9 +142,9 @@ OrbitFetcher::ResponseData::SatellitesAbove OrbitFetcher::DataReceiver::getSatel
 
 OrbitFetcher::ResponseData::SatellitesAbove OrbitFetcher::DataReceiver::getSatellitesAbove(
     const std::string& apiKey,
-    const float& observerLat,
-    const float& observerLon,
-    const float& observerAlt,
+    const double &observerLat,
+    const double &observerLon,
+    const double &observerAlt,
     const int& searchRadius,
     const SatelliteCategory& satelliteCategory)
 {

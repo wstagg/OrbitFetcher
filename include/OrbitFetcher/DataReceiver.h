@@ -26,18 +26,18 @@ namespace OrbitFetcher
         ResponseData::SatellitePosition getSatellitePosition(
             const std::string& apiKey,
             const int& noradId,
-            const float& observerLat,
-            const float& observerLon,
-            const float& observerAlt,
+            const double &observerLat,
+            const double &observerLon,
+            const double &observerAlt,
             const int& seconds);
 
         ResponseData::SatelliteVisualPass getSatelliteVisualPass();
         ResponseData::SatelliteVisualPass getSatelliteVisualPass(
             const std::string& apiKey,
             const int& noradId,
-            const float& observerLat,
-            const float& observerLon,
-            const float& observerAlt,
+            const double &observerLat,
+            const double &observerLon,
+            const double &observerAlt,
             const int& days,
             const int& minimumVisibility);
 
@@ -45,18 +45,18 @@ namespace OrbitFetcher
         ResponseData::SatelliteRadioPass getSatelliteRadioPass(
             const std::string& apiKey,
             const int& noradId,
-            const float& observerLat,
-            const float& observerLon,
-            const float& observerAlt,
+            const double &observerLat,
+            const double &observerLon,
+            const double &observerAlt,
             const int& days,
             const int& minimumElevation);
 
         ResponseData::SatellitesAbove getSatellitesAbove();
         ResponseData::SatellitesAbove getSatellitesAbove(
             const std::string& apiKey,
-            const float& observerLat,
-            const float& observerLon,
-            const float& observerAlt,
+            const double &observerLat,
+            const double &observerLon,
+            const double &observerAlt,
             const int& searchRadius,
             const SatelliteCategory& satelliteCategory);
 
@@ -65,9 +65,9 @@ namespace OrbitFetcher
         {
             std::string apiKey;
             std::optional<int> noradId;
-            std::optional<float> observerLat;
-            std::optional<float> observerLon;
-            std::optional<float> observerAlt;
+            std::optional<double> observerLat;
+            std::optional<double> observerLon;
+            std::optional<double> observerAlt;
             std::optional<int> searchRadius;
             std::optional<int> searchCategory;
             std::optional<int> seconds;

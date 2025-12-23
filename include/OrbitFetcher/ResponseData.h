@@ -53,13 +53,13 @@ namespace OrbitFetcher::ResponseData
 
     struct PositionData
     {
-        float lat;
-        float lon;
-        float altKm;
-        float azimuth;
-        float elevation;
-        float rightAscension;
-        float declination;
+        double lat;
+        double lon;
+        double altKm;
+        double azimuth;
+        double elevation;
+        double rightAscension;
+        double declination;
         int timeStamp;
 
         bool operator == (const PositionData& positionData2)
@@ -85,19 +85,19 @@ namespace OrbitFetcher::ResponseData
 
     struct VisualPassData
     {
-        float startAzimuth;
+        double startAzimuth;
         std::string startAzimuthCompass;
-        float startElevation;
+        double startElevation;
         int startUTC;
-        float maxAzimuth;
+        double maxAzimuth;
         std::string maxAzimuthCompass;
-        float maxElevation;
+        double maxElevation;
         int maxUTC;
-        float endAzimuth;
+        double endAzimuth;
         std::string endAzimuthCompass;
-        float endElevation;
+        double endElevation;
         int endUTC;
-        float maxVisualMagnitude;
+        double maxVisualMagnitude;
         int visibleDuration;
 
         bool operator == (const VisualPassData& visualPassData2)
@@ -131,14 +131,14 @@ namespace OrbitFetcher::ResponseData
 
     struct RadioPassData
     {
-        float startAzimuth;
+        double startAzimuth;
         std::string startAzimuthCompass;
         int startUTC;
-        float maxAzimuth;
+        double maxAzimuth;
         std::string maxAzimuthCompass;
-        float maxElevation;
+        double maxElevation;
         int maxUTC;
-        float endAzimuth;
+        double endAzimuth;
         std::string endAzimuthCompass;
         int endUTC;
 
@@ -172,9 +172,9 @@ namespace OrbitFetcher::ResponseData
         std::string satName;
         std::string internationalDesignator;
         std::string launchDate;
-        float lat;
-        float lon;
-        float altKm;
+        double lat;
+        double lon;
+        double altKm;
 
         bool operator == (const SatelliteData& satelliteData2)
         {

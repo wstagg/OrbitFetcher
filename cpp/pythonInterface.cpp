@@ -95,18 +95,18 @@ BOOST_PYTHON_MODULE(OrbitFetcher)
     OrbitFetcher::ResponseData::SatellitePosition (OrbitFetcher::DataReceiver::*getSatellitePositionWithArgs)(
         const std::string&,
         const int&,
-        const float&,
-        const float&,
-        const float&,
+        const double&,
+        const double&,
+        const double&,
         const int&) = &OrbitFetcher::DataReceiver::getSatellitePosition;
 
     OrbitFetcher::ResponseData::SatelliteVisualPass (OrbitFetcher::DataReceiver::*getSatelliteVisualPassNoArgs)() = &OrbitFetcher::DataReceiver::getSatelliteVisualPass;
     OrbitFetcher::ResponseData::SatelliteVisualPass (OrbitFetcher::DataReceiver::*getSatelliteVisualWithArgs)(
         const std::string&,
         const int&,
-        const float&,
-        const float&,
-        const float&,
+        const double&,
+        const double&,
+        const double&,
         const int&,
         const int&) = &OrbitFetcher::DataReceiver::getSatelliteVisualPass;
 
@@ -114,18 +114,18 @@ BOOST_PYTHON_MODULE(OrbitFetcher)
     OrbitFetcher::ResponseData::SatelliteRadioPass (OrbitFetcher::DataReceiver::*getSatelliteRadioWithArgs)(
         const std::string&,
         const int&,
-        const float&,
-        const float&,
-        const float&,
+        const double&,
+        const double&,
+        const double&,
         const int&,
         const int&) = &OrbitFetcher::DataReceiver::getSatelliteRadioPass;
 
     OrbitFetcher::ResponseData::SatellitesAbove (OrbitFetcher::DataReceiver::*getSatellitesAboveNoArgs)() = &OrbitFetcher::DataReceiver::getSatellitesAbove;
     OrbitFetcher::ResponseData::SatellitesAbove (OrbitFetcher::DataReceiver::*getSatellitesAboveWithArgs)(
         const std::string&,
-        const float&,
-        const float&,
-        const float&,
+        const double&,
+        const double&,
+        const double&,
         const int&,
         const OrbitFetcher::SatelliteCategory&) = &OrbitFetcher::DataReceiver::getSatellitesAbove;
 

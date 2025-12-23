@@ -26,9 +26,9 @@ struct DataReceiverFixture
     std::unique_ptr<OrbitFetcher::DataReceiver>dataReceiver;
     std::string apiKey{};
     int noradId {25544};
-    float observerLat{50.96081305800268};
-    float observerLon{ -0.11800587771065109};
-    float observerAlt{ 0.0};
+    double observerLat{50.96081305800268};
+    double observerLon{ -0.11800587771065109};
+    double observerAlt{ 0.0};
     int searchRadius{90};
     int searchCategory{2};
     int seconds{10};
