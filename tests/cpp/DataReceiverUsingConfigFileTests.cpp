@@ -3,7 +3,6 @@
 
 BOOST_FIXTURE_TEST_CASE(testGetTleUsingConfigFile, DataReceiverWithConfigFileFixture)
 {
-    BOOST_REQUIRE(configReadSuccess);
     auto tle = dataReceiver->getTle();
     BOOST_TEST(tle.satId == config.getConfigValues().noradId);
     BOOST_TEST(!tle.satName.empty());
@@ -13,7 +12,6 @@ BOOST_FIXTURE_TEST_CASE(testGetTleUsingConfigFile, DataReceiverWithConfigFileFix
 
 BOOST_FIXTURE_TEST_CASE(testGetSatellitePositionUsingConfigFile, DataReceiverWithConfigFileFixture)
 {
-    BOOST_REQUIRE(configReadSuccess);
     auto satellitePositions = dataReceiver->getSatellitePosition();
     BOOST_TEST(satellitePositions.satId == config.getConfigValues().noradId);
     BOOST_TEST(!satellitePositions.satName.empty());
@@ -23,7 +21,6 @@ BOOST_FIXTURE_TEST_CASE(testGetSatellitePositionUsingConfigFile, DataReceiverWit
 
 BOOST_FIXTURE_TEST_CASE(testGetSatelliteVisualPassUsingConfigFile, DataReceiverWithConfigFileFixture)
 {
-    BOOST_REQUIRE(configReadSuccess);
     auto satelliteVisualPass = dataReceiver->getSatelliteVisualPass();
     BOOST_TEST(satelliteVisualPass.satId == config.getConfigValues().noradId);
     BOOST_TEST(!satelliteVisualPass.satName.empty());
@@ -33,7 +30,6 @@ BOOST_FIXTURE_TEST_CASE(testGetSatelliteVisualPassUsingConfigFile, DataReceiverW
 
 BOOST_FIXTURE_TEST_CASE(testGetSatelliteRadioPassUsingConfigFile, DataReceiverWithConfigFileFixture)
 {
-    BOOST_REQUIRE(configReadSuccess);
     auto satelliteRadioPass = dataReceiver->getSatelliteRadioPass();
     BOOST_TEST(satelliteRadioPass.satId == config.getConfigValues().noradId);
     BOOST_TEST(!satelliteRadioPass.satName.empty());
@@ -43,7 +39,6 @@ BOOST_FIXTURE_TEST_CASE(testGetSatelliteRadioPassUsingConfigFile, DataReceiverWi
 
 BOOST_FIXTURE_TEST_CASE(testGetSatellitesAboveUsingConfigFile, DataReceiverWithConfigFileFixture)
 {
-    BOOST_REQUIRE(configReadSuccess);
     auto satellitesAbove = dataReceiver->getSatellitesAbove();
     BOOST_TEST(satellitesAbove.transactionCount >= 0);
     BOOST_TEST(!satellitesAbove.category.empty());

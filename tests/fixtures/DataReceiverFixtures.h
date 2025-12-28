@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include "OrbitFetcher/Config.h"
 #include "OrbitFetcher/DataReceiver.h"
 
@@ -8,11 +7,10 @@ struct DataReceiverWithConfigFileFixture
 {
     std::unique_ptr<OrbitFetcher::DataReceiver>dataReceiver;
     OrbitFetcher::Config config{};
-    bool configReadSuccess{};
-    
+
     DataReceiverWithConfigFileFixture()
     {
-        configReadSuccess = config.read("../config.txt");
+        config.read("../config.txt");
         dataReceiver = std::make_unique<OrbitFetcher::DataReceiver>(config);
     }
 

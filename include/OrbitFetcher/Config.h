@@ -37,7 +37,7 @@ namespace OrbitFetcher
     {
     public:
         Config();
-        bool read(const std::string& filePath);
+        void read(const std::string& filePath);
         const ConfigValues& getConfigValues();
 
     private:

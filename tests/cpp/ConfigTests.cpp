@@ -4,7 +4,7 @@
 BOOST_AUTO_TEST_CASE(testConfigReadValidFilePath)
 {
     OrbitFetcher::Config config{};
-    BOOST_TEST(config.read("../config.txt") == true);
+    BOOST_CHECK_NO_THROW(config.read("../config.txt"));
 };
 
 BOOST_AUTO_TEST_CASE(testConfigReadInvalidFilePath)
@@ -16,5 +16,5 @@ BOOST_AUTO_TEST_CASE(testConfigReadInvalidFilePath)
 BOOST_AUTO_TEST_CASE(testConfigMissingConfigFileValue)
 {
     OrbitFetcher::Config config{};
-    BOOST_TEST(config.read("../config_tests.txt") == false);
+    BOOST_CHECK_THROW(config.read("../config_tests.txt"), std::runtime_error);
 };
