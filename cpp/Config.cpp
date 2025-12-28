@@ -6,7 +6,7 @@ OrbitFetcher::Config::Config()
 {
 }
 
-bool OrbitFetcher::Config::read(const std::string& filePath)
+void OrbitFetcher::Config::read(const std::string& filePath)
 {
     std::fstream f{};
 
@@ -56,7 +56,10 @@ bool OrbitFetcher::Config::read(const std::string& filePath)
         setConfigValue(option, value, totalConfigValuesSet);
     }
 
-    return totalOptionsFound == totalConfigValuesSet;
+    if (totalOptionsFound != totalConfigValuesSet)
+    {
+        throw std::runtime_error("OrbitFetcher::Config::read - config option missing value");
+    }
 }
 
 const OrbitFetcher::ConfigValues &OrbitFetcher::Config::getConfigValues()
@@ -70,7 +73,7 @@ void OrbitFetcher::Config::setConfigValue(const std::string& option, const std::
     {
         if (!value.empty())
         {
-            configValues.apiKey= value;
+            configValues.apiKey = value;
             ++totalConfigValuesSet;
         }
     }

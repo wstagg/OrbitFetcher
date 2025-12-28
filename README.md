@@ -87,12 +87,7 @@ int main()
     OrbitFetcher::Config config;
 
     // Pass in the path to the config.txt file to be read
-    bool ok = config.read("./config.txt");
-    
-    if (!ok)
-    {
-        return 1;
-    }
+    config.read("./config.txt");
 
     // Create an instance of the DataReceiver and pass the config object into the constructor 
     OrbitFetcher::DataReceiver receiver(config);
@@ -169,12 +164,7 @@ int main()
 {
     OrbitFetcher::Config config;
 
-    bool ok = config.read("./config.txt");
-    
-    if (!ok)
-    {
-        return 1;
-    }
+    config.read("./config.txt");
 
     // Get API key from config file
     auto apiKey = config.getConfigValues().apiKey;
@@ -203,16 +193,15 @@ import OrbitFetcher
 
 config = OrbitFetcher.Config()
 
-ok = config.read("config.txt")
+config.read("config.txt")
 
-if ok:
-    dataReceiver = OrbitFetcher.DataReceiver(config)
+dataReceiver = OrbitFetcher.DataReceiver(config)
 
-    tle = dataReceiver.getTle()
-    positions = dataReceiver.getSatellitePosition()
-    visualPass = dataReceiver.getSatelliteVisualPass()
-    radioPass = dataReceiver.getSatelliteRadioPass()
-    satsAbove = dataReceiver.getSatellitesAbove()
+tle = dataReceiver.getTle()
+positions = dataReceiver.getSatellitePosition()
+visualPass = dataReceiver.getSatelliteVisualPass()
+radioPass = dataReceiver.getSatelliteRadioPass()
+satsAbove = dataReceiver.getSatellitesAbove()
 
 
 ```

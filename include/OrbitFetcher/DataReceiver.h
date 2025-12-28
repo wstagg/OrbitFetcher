@@ -109,26 +109,26 @@ namespace OrbitFetcher
 
         auto res = makeCurlRequest(apiUrl);
 
-        if (res == CURLcode::CURLE_OK && !dataString.empty())
+        if (!res == CURLcode::CURLE_OK)
+        {
+            throw std::runtime_error("CURL request failed for " + apiUrl + ", error code: " + std::to_string(res));
+        }
+
+        if (dataString.empty())
+        {
+            throw std::runtime_error("Empty response from API: " + apiUrl);
+        }
+
+        try
         {
             T responseData{};
-
-            try
-            {
-                JsonParser jsonParser;
-                jsonParser.parse(apiType, dataString, responseData);
-                return responseData;
-            }
-            catch(const std::exception& e)
-            {
-                std::cerr << "failed to parse JSON from api request: " << apiUrl << " " << e.what() << '\n';
-                return T{};
-            }
+            JsonParser jsonParser;
+            jsonParser.parse(apiType, dataString, responseData);
+            return responseData;
         }
-        else
+        catch(const std::exception& e)
         {
-            std::cout << "Failed to make curl request, curl code: " << res << std::endl;
-            return T{};
+            throw std::runtime_error( "failed to parse JSON from api request: " + apiUrl + " " + e.what());
         }
     }
 }
