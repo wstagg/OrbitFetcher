@@ -7,7 +7,7 @@ BOOST_FIXTURE_TEST_CASE(testGetTleUsingConfigFile, DataReceiverWithConfigFileFix
     BOOST_TEST(tle.satId == config.getConfigValues().noradId);
     BOOST_TEST(!tle.satName.empty());
     BOOST_TEST(tle.transactionCount >= 0);
-    BOOST_TEST(!tle.tle.empty());
+    BOOST_TEST(!tle.tleStr.empty());
 };
 
 BOOST_FIXTURE_TEST_CASE(testGetSatellitePositionUsingConfigFile, DataReceiverWithConfigFileFixture)

@@ -9,11 +9,11 @@ void OrbitFetcher::JsonParser::parseTle(const std::string_view& dataString, Resp
     json.at("info").at("satid").get_to(tle.satId);
     json.at("info").at("satname").get_to(tle.satName);
     json.at("info").at("transactionscount").get_to(tle.transactionCount);
-    json.at("tle").get_to(tle.tle);
+    json.at("tle").get_to(tle.tleStr);
 
-    if (!tle.tle.empty())
+    if (!tle.tleStr.empty())
     {
-        tle.tleData = OrbitFetcher::TleParser::parseTleString(tle.tle);
+        tle.tleData = OrbitFetcher::TleParser::parseTleString(tle.tleStr);
     }
 }
 

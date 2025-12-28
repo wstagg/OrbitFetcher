@@ -19,7 +19,7 @@ OrbitFetcher::ResponseData::TleLineOne OrbitFetcher::TleParser::parseLineOne(con
 
     if (lineOneStr.length() < LINE_ONE_LEN)
     {
-        return lineOneData;
+        throw std::runtime_error("OrbitFetcher::TleParser::parseLineOne - lineOneStr len < LINE_ONE_LEN");
     }
 
     constexpr OrbitFetcher::TleLineOneSubStringFields subStrings;
@@ -48,7 +48,8 @@ OrbitFetcher::ResponseData::TleLineTwo OrbitFetcher::TleParser::parseLineTwo(con
 
     if (lineTwoStr.length() < LINE_TWO_LEN)
     {
-        return lineTwoData;
+        throw std::runtime_error("OrbitFetcher::TleParser::parseLineTwo - lineTwoStr.length() < LINE_TWO_LEN");
+
     }
 
     constexpr OrbitFetcher::TleLineTwoSubStringFields subStrings;

@@ -2,7 +2,7 @@
 
 ## What it is
 
-OrbitFetcher is a C++ library that allows easy API calls to [N2YO.com](https://www.n2yo.com/). Users can easily retrieve different satellite data sets with a simple function call! This library also comes with optional Python bindings.
+OrbitFetcher is a C++ library that allows easy API calls to [N2YO.com](https://www.n2yo.com/). Users can easily retrieve different satellite data sets with a simple function call. The returned data is parsed into ResponseData structs for easy access to data parameters. This library also comes with optional Python bindings.
 
 API calls available:
 - _TLE_
@@ -10,6 +10,8 @@ API calls available:
 - _Visual passes_
 - _Radio passes_
 - _Satellites above_
+
+
 
 ## Disclaimer
 
@@ -213,7 +215,7 @@ dataReceiver = OrbitFetcher.DataReceiver()
 
 tle = dataReceiver.getTle("589P8Q-SDRYX8-L842ZD-5Z9", 25544)
 
-print(tle.tle)
+print(tle.tleStr)
     
 # Other function calls work the same as cpp...
 

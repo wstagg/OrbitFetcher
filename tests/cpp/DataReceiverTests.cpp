@@ -7,7 +7,7 @@ BOOST_FIXTURE_TEST_CASE(testGetTle, DataReceiverFixture)
     BOOST_TEST(tle.satId == noradId);
     BOOST_TEST(!tle.satName.empty());
     BOOST_TEST(tle.transactionCount >= 0);
-    BOOST_TEST(!tle.tle.empty());
+    BOOST_TEST(!tle.tleStr.empty());
 }
 
 BOOST_FIXTURE_TEST_CASE(testGetSatellitePosition, DataReceiverFixture)

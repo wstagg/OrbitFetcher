@@ -47,7 +47,7 @@ namespace OrbitFetcher::ResponseData
         int satId;
         std::string satName;
         int transactionCount;
-        std::string tle;
+        std::string tleStr;
         TleData tleData;
     };
 

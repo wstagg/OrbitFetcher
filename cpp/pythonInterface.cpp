@@ -181,7 +181,7 @@ BOOST_PYTHON_MODULE(OrbitFetcher)
         .def_readonly("satId", &OrbitFetcher::ResponseData::Tle::satId)
         .def_readonly("satName", &OrbitFetcher::ResponseData::Tle::satName)
         .def_readonly("transactionCount", &OrbitFetcher::ResponseData::Tle::transactionCount)
-        .def_readonly("tle", &OrbitFetcher::ResponseData::Tle::tle)
+        .def_readonly("tle", &OrbitFetcher::ResponseData::Tle::tleStr)
         .def_readonly("tleData", &OrbitFetcher::ResponseData::Tle::tleData);
 
     boost::python::class_<OrbitFetcher::ResponseData::PositionData>("PositionData")
