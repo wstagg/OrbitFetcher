@@ -145,11 +145,44 @@ BOOST_PYTHON_MODULE(OrbitFetcher)
         .def("getSatellitesAbove", getSatellitesAboveWithArgs);
 
     // Response Data
+    boost::python::class_<OrbitFetcher::ResponseData::TleLineOne>("TleLineOne")
+        .def_readonly("lineNumber", &OrbitFetcher::ResponseData::TleLineOne::lineNumber)
+        .def_readonly("satelliteNumber", &OrbitFetcher::ResponseData::TleLineOne::satelliteNumber)
+        .def_readonly("classification", &OrbitFetcher::ResponseData::TleLineOne::classification)
+        .def_readonly("intlDesignatorLaunchYear", &OrbitFetcher::ResponseData::TleLineOne::intlDesignatorLaunchYear)
+        .def_readonly("intlDesignatorLaunchNumberOfYear", &OrbitFetcher::ResponseData::TleLineOne::intlDesignatorLaunchNumberOfYear)
+        .def_readonly("intlDesignatorPieceOfLaunch", &OrbitFetcher::ResponseData::TleLineOne::intlDesignatorPieceOfLaunch)
+        .def_readonly("epochYear", &OrbitFetcher::ResponseData::TleLineOne::epochYear)
+        .def_readonly("epochDay", &OrbitFetcher::ResponseData::TleLineOne::epochDay)
+        .def_readonly("firstDerivativeMeanMotion", &OrbitFetcher::ResponseData::TleLineOne::firstDerivativeMeanMotion)
+        .def_readonly("secondDerivativeMeanMotion", &OrbitFetcher::ResponseData::TleLineOne::secondDerivativeMeanMotion)
+        .def_readonly("bStarDragCoefficient", &OrbitFetcher::ResponseData::TleLineOne::bStarDragCoefficient)
+        .def_readonly("ephemerisType", &OrbitFetcher::ResponseData::TleLineOne::ephemerisType)
+        .def_readonly("elementSetNumber", &OrbitFetcher::ResponseData::TleLineOne::elementSetNumber)
+        .def_readonly("checkSum", &OrbitFetcher::ResponseData::TleLineOne::checkSum);
+
+    boost::python::class_<OrbitFetcher::ResponseData::TleLineTwo>("TleLineTwo")
+        .def_readonly("lineNumber", &OrbitFetcher::ResponseData::TleLineTwo::lineNumber)
+        .def_readonly("satelliteNumber", &OrbitFetcher::ResponseData::TleLineTwo::satelliteNumber)
+        .def_readonly("inclinationDegrees", &OrbitFetcher::ResponseData::TleLineTwo::inclinationDegrees)
+        .def_readonly("rightAscensionDegrees", &OrbitFetcher::ResponseData::TleLineTwo::rightAscensionDegrees)
+        .def_readonly("orbitEccentricity", &OrbitFetcher::ResponseData::TleLineTwo::orbitEccentricity)
+        .def_readonly("argumentOfPerigee", &OrbitFetcher::ResponseData::TleLineTwo::argumentOfPerigee)
+        .def_readonly("meanAnomalyDegrees", &OrbitFetcher::ResponseData::TleLineTwo::meanAnomalyDegrees)
+        .def_readonly("meanMotion", &OrbitFetcher::ResponseData::TleLineTwo::meanMotion)
+        .def_readonly("totalRevolutionsAtEpoch", &OrbitFetcher::ResponseData::TleLineTwo::totalRevolutionsAtEpoch)
+        .def_readonly("checkSum", &OrbitFetcher::ResponseData::TleLineTwo::checkSum);
+
+    boost::python::class_<OrbitFetcher::ResponseData::TleData>("TleData")
+        .def_readonly("tleLineOne", &OrbitFetcher::ResponseData::TleData::tleLineOne)
+        .def_readonly("tleLineTwo", &OrbitFetcher::ResponseData::TleData::tleLineTwo);
+
     boost::python::class_<OrbitFetcher::ResponseData::Tle>("Tle")
         .def_readonly("satId", &OrbitFetcher::ResponseData::Tle::satId)
         .def_readonly("satName", &OrbitFetcher::ResponseData::Tle::satName)
         .def_readonly("transactionCount", &OrbitFetcher::ResponseData::Tle::transactionCount)
-        .def_readonly("tle", &OrbitFetcher::ResponseData::Tle::tle);
+        .def_readonly("tle", &OrbitFetcher::ResponseData::Tle::tle)
+        .def_readonly("tleData", &OrbitFetcher::ResponseData::Tle::tleData);
 
     boost::python::class_<OrbitFetcher::ResponseData::PositionData>("PositionData")
         .def_readonly("lat", &OrbitFetcher::ResponseData::PositionData::lat)
