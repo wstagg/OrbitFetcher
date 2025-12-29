@@ -3,8 +3,7 @@
 #include <iostream>
 
 OrbitFetcher::Config::Config()
-{
-}
+= default;
 
 void OrbitFetcher::Config::read(const std::string& filePath)
 {
