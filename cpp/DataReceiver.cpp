@@ -230,7 +230,7 @@ OrbitFetcher::ResponseData::SatellitesAbove OrbitFetcher::DataReceiver::getSatel
     apiCallParams.observerLat = config.getConfigValues().observerLat;
     apiCallParams.observerLon = config.getConfigValues().observerLon;
     apiCallParams.observerAlt = config.getConfigValues().observerAlt;
-    apiCallParams.searchCategory = config.getConfigValues().satelliteCategory;
+    apiCallParams.searchCategory = config.getConfigValues().searchCategory;
     apiCallParams.searchRadius = config.getConfigValues().searchRadius;
     return callApi<ResponseData::SatellitesAbove>(ApiType::WhatsUp, apiCallParams);
 }
@@ -241,7 +241,7 @@ OrbitFetcher::ResponseData::SatellitesAbove OrbitFetcher::DataReceiver::getSatel
     const double &observerLon,
     const double &observerAlt,
     const int& searchRadius,
-    const SatelliteCategory& satelliteCategory)
+    const SearchCategory& searchCategory)
 {
     if (apiKey.empty())
     {
@@ -269,7 +269,7 @@ OrbitFetcher::ResponseData::SatellitesAbove OrbitFetcher::DataReceiver::getSatel
     apiCallParams.observerLon = observerLon;
     apiCallParams.observerAlt = observerAlt;
     apiCallParams.searchRadius = searchRadius;
-    apiCallParams.searchCategory = static_cast<int>(satelliteCategory);
+    apiCallParams.searchCategory = static_cast<int>(searchCategory);
     return callApi<ResponseData::SatellitesAbove>(ApiType::WhatsUp, apiCallParams);
 }
 

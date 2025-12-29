@@ -227,7 +227,7 @@ void OrbitFetcher::Config::setConfigValue(const std::string& option, const std::
             throw std::out_of_range("OrbitFetcher::Config::setConfigValue - SEARCH_CATEGORY must be between 0 and 57");
         }
 
-        configValues.satelliteCategory = searchCategory;
+        configValues.searchCategory = searchCategory;
     }
     else if(option == "SECONDS")
     {

@@ -126,7 +126,7 @@ int main()
     const float observerLon {-0.11800587771065109};
     const float observerAlt {0.0};
     const int searchRadius {90};
-    const OrbitFetcher::SatelliteCategory satelliteCategory {OrbitFetcher::SatelliteCategory::All};
+    const OrbitFetcher::SearchCategory searchCategory {OrbitFetcher::SearchCategory::All};
     const int seconds {10};
     const int days {10};
     const int minimumVisibility {3};
@@ -148,7 +148,7 @@ int main()
     OrbitFetcher::ResponseData::SatelliteRadioPass radioPass = receiver.getSatelliteRadioPass(apiKey, noradId, observerLat, observerLon, observerAlt, days, minimumElevation);
 
     // Get satellites above using function parameters
-    OrbitFetcher::ResponseData::SatellitesAbove satellitesAbove = receiver.getSatellitesAbove(apiKey, observerLat, observerLon, observerAlt, searchRadius, satelliteCategory);
+    OrbitFetcher::ResponseData::SatellitesAbove satellitesAbove = receiver.getSatellitesAbove(apiKey, observerLat, observerLon, observerAlt, searchRadius, searchCategory);
 
 }
 ```

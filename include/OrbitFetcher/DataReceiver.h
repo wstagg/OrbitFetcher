@@ -6,7 +6,7 @@
 #include <optional>
 
 #include "OrbitFetcher/Config.h"
-#include "OrbitFetcher/SatelliteCategories.h"
+#include "OrbitFetcher/SearchCategory.h"
 #include "OrbitFetcher/ApiType.h"
 #include "OrbitFetcher/JsonParser.h"
 
@@ -58,7 +58,7 @@ namespace OrbitFetcher
             const double &observerLon,
             const double &observerAlt,
             const int& searchRadius,
-            const SatelliteCategory& satelliteCategory);
+            const SearchCategory& searchCategory);
 
     private:
         struct ApiCallParameters

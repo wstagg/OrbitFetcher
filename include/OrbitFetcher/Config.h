@@ -11,7 +11,7 @@ namespace OrbitFetcher
         double observerAlt{};
         int searchRadius{};
         int noradId{};
-        int satelliteCategory{};
+        int searchCategory{};
         int seconds{};
         int days{};
         int minVisibility{};

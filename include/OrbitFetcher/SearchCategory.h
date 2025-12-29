@@ -2,7 +2,7 @@
 
 namespace OrbitFetcher
 {
-    enum class SatelliteCategory : int
+    enum class SearchCategory : int
     {
         All = 0,
         Brightest = 1,
