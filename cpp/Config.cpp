@@ -65,7 +65,6 @@ void OrbitFetcher::Config::setConfigValue(const std::string& option, const std::
         }
         
         configValues.apiKey = value;
-
     }
     else if(option == "OBSERVER_LAT")
     {
@@ -74,7 +73,19 @@ void OrbitFetcher::Config::setConfigValue(const std::string& option, const std::
             throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - OBSERVER_LAT missing value");
         }
 
-        const auto latitude = std::stod(value);
+        double latitude;
+        try
+        {
+            latitude = std::stod(value);
+        }
+        catch (const std::invalid_argument&)
+        {
+            throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - OBSERVER_LAT invalid format: " + value);
+        }
+        catch (const std::out_of_range&)
+        {
+            throw std::out_of_range("OrbitFetcher::Config::setConfigValue - OBSERVER_LAT value out of range: " + value);
+        }
 
         if (latitude < -90.0 || latitude > 90.0)
         {
@@ -90,14 +101,26 @@ void OrbitFetcher::Config::setConfigValue(const std::string& option, const std::
             throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - OBSERVER_LON missing value");
         }
 
-        const auto longitude = std::stod(value);
+        double longitude;
+        try
+        {
+            longitude = std::stod(value);
+        }
+        catch (const std::invalid_argument&)
+        {
+            throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - OBSERVER_LON invalid format: " + value);
+        }
+        catch (const std::out_of_range&)
+        {
+            throw std::out_of_range("OrbitFetcher::Config::setConfigValue - OBSERVER_LON value out of range: " + value);
+        }
 
         if (longitude < -180.0 || longitude > 180.0)
         {
             throw std::out_of_range("OrbitFetcher::Config::setConfigValue - OBSERVER_LON must be between -180 and 180 degrees");
         }
 
-        configValues.observerLat = longitude;
+        configValues.observerLon = longitude;
     }
     else if(option == "OBSERVER_ALT")
     {
@@ -106,7 +129,19 @@ void OrbitFetcher::Config::setConfigValue(const std::string& option, const std::
             throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - OBSERVER_ALT missing value");
         }
 
-        const auto altitude = std::stod(value);
+        double altitude;
+        try
+        {
+            altitude = std::stod(value);
+        }
+        catch (const std::invalid_argument&)
+        {
+            throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - OBSERVER_ALT invalid format: " + value);
+        }
+        catch (const std::out_of_range&)
+        {
+            throw std::out_of_range("OrbitFetcher::Config::setConfigValue - OBSERVER_ALT value out of range: " + value);
+        }
 
         configValues.observerAlt = altitude;
     }
@@ -117,7 +152,19 @@ void OrbitFetcher::Config::setConfigValue(const std::string& option, const std::
             throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - SEARCH_RAD missing value");
         }
 
-        const auto searchRadius = std::stoi(value);
+        int searchRadius;
+        try
+        {
+            searchRadius = std::stoi(value);
+        }
+        catch (const std::invalid_argument&)
+        {
+            throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - SEARCH_RAD invalid format: " + value);
+        }
+        catch (const std::out_of_range&)
+        {
+            throw std::out_of_range("OrbitFetcher::Config::setConfigValue - SEARCH_RAD value out of range: " + value);
+        }
 
         if (searchRadius < 0 || searchRadius > 90)
         {
@@ -133,11 +180,23 @@ void OrbitFetcher::Config::setConfigValue(const std::string& option, const std::
             throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - NORAD_ID missing value");
         }
 
-        const auto noradID = std::stoi(value);
+        int noradID;
+        try
+        {
+            noradID = std::stoi(value);
+        }
+        catch (const std::invalid_argument&)
+        {
+            throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - NORAD_ID invalid format: " + value);
+        }
+        catch (const std::out_of_range&)
+        {
+            throw std::out_of_range("OrbitFetcher::Config::setConfigValue - NORAD_ID value out of range: " + value);
+        }
 
         if (noradID <= 0)
         {
-            throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - NORAD_ID needs to be a valid ID ");
+            throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - NORAD_ID needs to be a valid ID");
         }
 
         configValues.noradId = noradID;
@@ -149,11 +208,23 @@ void OrbitFetcher::Config::setConfigValue(const std::string& option, const std::
             throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - SEARCH_CATEGORY missing value");
         }
 
-        const auto searchCategory = std::stoi(value);
+        int searchCategory;
+        try
+        {
+            searchCategory = std::stoi(value);
+        }
+        catch (const std::invalid_argument&)
+        {
+            throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - SEARCH_CATEGORY invalid format: " + value);
+        }
+        catch (const std::out_of_range&)
+        {
+            throw std::out_of_range("OrbitFetcher::Config::setConfigValue - SEARCH_CATEGORY value out of range: " + value);
+        }
 
         if (searchCategory < 0 || searchCategory > 57)
         {
-            throw std::out_of_range("OrbitFetcher::Config::setConfigValue - SEARCH_CATEGORY must be between 0 and 57 degrees");
+            throw std::out_of_range("OrbitFetcher::Config::setConfigValue - SEARCH_CATEGORY must be between 0 and 57");
         }
 
         configValues.satelliteCategory = searchCategory;
@@ -165,11 +236,23 @@ void OrbitFetcher::Config::setConfigValue(const std::string& option, const std::
             throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - SECONDS missing value");
         }
 
-        const auto seconds = std::stoi(value);
+        int seconds;
+        try
+        {
+            seconds = std::stoi(value);
+        }
+        catch (const std::invalid_argument&)
+        {
+            throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - SECONDS invalid format: " + value);
+        }
+        catch (const std::out_of_range&)
+        {
+            throw std::out_of_range("OrbitFetcher::Config::setConfigValue - SECONDS value out of range: " + value);
+        }
 
         if (seconds <= 0 || seconds > 300)
         {
-            throw std::out_of_range("OrbitFetcher::Config::setConfigValue - seconds must be between 0 and 300");
+            throw std::out_of_range("OrbitFetcher::Config::setConfigValue - SECONDS must be between 0 and 300");
         }
 
         configValues.seconds = seconds;
@@ -181,7 +264,19 @@ void OrbitFetcher::Config::setConfigValue(const std::string& option, const std::
             throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - DAYS missing value");
         }
 
-        const auto days = std::stoi(value);
+        int days;
+        try
+        {
+            days = std::stoi(value);
+        }
+        catch (const std::invalid_argument&)
+        {
+            throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - DAYS invalid format: " + value);
+        }
+        catch (const std::out_of_range&)
+        {
+            throw std::out_of_range("OrbitFetcher::Config::setConfigValue - DAYS value out of range: " + value);
+        }
 
         if (days <= 0 || days > 10)
         {
@@ -197,11 +292,23 @@ void OrbitFetcher::Config::setConfigValue(const std::string& option, const std::
             throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - MIN_VISIBILITY missing value");
         }
 
-        const auto minVisibility = std::stoi(value);
-
-        if (minVisibility<= 0)
+        int minVisibility;
+        try
         {
-            throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - MIN_VISIBILITY must be greate than zero");
+            minVisibility = std::stoi(value);
+        }
+        catch (const std::invalid_argument&)
+        {
+            throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - MIN_VISIBILITY invalid format: " + value);
+        }
+        catch (const std::out_of_range&)
+        {
+            throw std::out_of_range("OrbitFetcher::Config::setConfigValue - MIN_VISIBILITY value out of range: " + value);
+        }
+
+        if (minVisibility <= 0)
+        {
+            throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - MIN_VISIBILITY must be greater than zero");
         }
 
         configValues.minVisibility = minVisibility;
@@ -213,7 +320,19 @@ void OrbitFetcher::Config::setConfigValue(const std::string& option, const std::
             throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - MIN_ELEVATION missing value");
         }
 
-        const auto minElevation = std::stoi(value);
+        int minElevation;
+        try
+        {
+            minElevation = std::stoi(value);
+        }
+        catch (const std::invalid_argument&)
+        {
+            throw std::invalid_argument("OrbitFetcher::Config::setConfigValue - MIN_ELEVATION invalid format: " + value);
+        }
+        catch (const std::out_of_range&)
+        {
+            throw std::out_of_range("OrbitFetcher::Config::setConfigValue - MIN_ELEVATION value out of range: " + value);
+        }
 
         if (minElevation <= 0 || minElevation > 360)
         {
