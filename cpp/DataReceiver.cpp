@@ -31,6 +31,16 @@ OrbitFetcher::ResponseData::Tle OrbitFetcher::DataReceiver::getTle()
 
 OrbitFetcher::ResponseData::Tle OrbitFetcher::DataReceiver::getTle(const std::string& apiKey, const int& noradId)
 {
+    if (apiKey.empty())
+    {
+        throw std::invalid_argument("OrbitFetcher::DataReceiver::getTle - apiKey cannot be empty");
+    }
+
+    if (noradId <= 0)
+    {
+        throw std::invalid_argument("OrbitFetcher::DataReceiver::getTle - noradId must be positive");
+    }
+
     ApiCallParameters apiCallParams;
     apiCallParams.apiKey = apiKey;
     apiCallParams.noradId = noradId;
@@ -57,6 +67,31 @@ OrbitFetcher::ResponseData::SatellitePosition OrbitFetcher::DataReceiver::getSat
     const double &observerAlt,
     const int& seconds)
 {
+    if (apiKey.empty())
+    {
+        throw std::invalid_argument("OrbitFetcher::DataReceiver::getSatellitePosition - apiKey cannot be empty");
+    }
+
+    if (noradId <= 0)
+    {
+        throw std::invalid_argument("OrbitFetcher::DataReceiver::getSatellitePosition - noradId not valid. <= 0");
+    }
+
+    if (observerLat < -90.0 || observerLat > 90.0)
+    {
+        throw std::out_of_range("OrbitFetcher::DataReceiver::getSatellitePosition - observerLat must be between -90 and 90 degrees");
+    }
+
+    if (observerLon < -180.0 || observerLon > 180.0)
+    {
+        throw std::out_of_range("OrbitFetcher::DataReceiver::getSatellitePosition - observerLon must be between -180 and 180 degrees");
+    }
+
+    if (seconds <= 0 || seconds > 300)
+    {
+        throw std::out_of_range("OrbitFetcher::DataReceiver::getSatellitePosition - seconds must be between 1 and 300");
+    }
+
     ApiCallParameters apiCallParams;
     apiCallParams.apiKey = apiKey;
     apiCallParams.noradId = noradId;
@@ -89,6 +124,36 @@ OrbitFetcher::ResponseData::SatelliteVisualPass OrbitFetcher::DataReceiver::getS
     const int& days,
     const int& minimumVisibility)
 {
+    if (apiKey.empty())
+    {
+        throw std::invalid_argument("OrbitFetcher::DataReceiver::getSatelliteVisualPass - apiKey cannot be empty");
+    }
+
+    if (noradId <= 0)
+    {
+        throw std::invalid_argument("OrbitFetcher::DataReceiver::getSatelliteVisualPass - noradId must be positive");
+    }
+
+    if (observerLat < -90.0 || observerLat > 90.0)
+    {
+        throw std::out_of_range("OrbitFetcher::DataReceiver::getSatelliteVisualPass - observerLat must be between -90 and 90 degrees");
+    }
+
+    if (observerLon < -180.0 || observerLon > 180.0)
+    {
+        throw std::out_of_range("OrbitFetcher::DataReceiver::getSatelliteVisualPass - observerLon must be between -180 and 180 degrees");
+    }
+
+    if (days <= 0 || days > 10)
+    {
+        throw std::out_of_range("OrbitFetcher::DataReceiver::getSatelliteVisualPass - days must be between 1 and 10");
+    }
+
+    if (minimumVisibility <= 0)
+    {
+        throw std::out_of_range("OrbitFetcher::DataReceiver::getSatelliteVisualPass - minimumVisibility must be greater than zero");
+    }
+
     ApiCallParameters apiCallParams;
     apiCallParams.apiKey = apiKey;
     apiCallParams.noradId = noradId;
@@ -117,6 +182,36 @@ OrbitFetcher::ResponseData::SatelliteRadioPass OrbitFetcher::DataReceiver::getSa
     const double &observerLat, const double &observerLon, const double &observerAlt, const int& days,
     const int& minimumElevation)
 {
+    if (apiKey.empty())
+    {
+        throw std::invalid_argument("OrbitFetcher::DataReceiver::getSatelliteRadioPass - apiKey cannot be empty");
+    }
+
+    if (noradId <= 0)
+    {
+        throw std::invalid_argument("OrbitFetcher::DataReceiver::getSatelliteRadioPass - noradId must be positive");
+    }
+
+    if (observerLat < -90.0 || observerLat > 90.0)
+    {
+        throw std::out_of_range("OrbitFetcher::DataReceiver::getSatelliteRadioPass - observerLat must be between -90 and 90 degrees");
+    }
+
+    if (observerLon < -180.0 || observerLon > 180.0)
+    {
+        throw std::out_of_range("OrbitFetcher::DataReceiver::getSatelliteRadioPass - observerLon must be between -180 and 180 degrees");
+    }
+
+    if (days <= 0 || days > 10)
+    {
+        throw std::out_of_range("OrbitFetcher::DataReceiver::getSatelliteRadioPass - days must be between 1 and 10");
+    }
+
+    if (minimumElevation <= 0 || minimumElevation > 360)
+    {
+        throw std::out_of_range("OrbitFetcher::DataReceiver::getSatelliteRadioPass - minimumElevation must be between 0 and 360 degrees");
+    }
+
     ApiCallParameters apiCallParams;
     apiCallParams.apiKey = apiKey;
     apiCallParams.noradId = noradId;
@@ -148,6 +243,26 @@ OrbitFetcher::ResponseData::SatellitesAbove OrbitFetcher::DataReceiver::getSatel
     const int& searchRadius,
     const SatelliteCategory& satelliteCategory)
 {
+    if (apiKey.empty())
+    {
+        throw std::invalid_argument("OrbitFetcher::DataReceiver::getSatellitesAbove - apiKey cannot be empty");
+    }
+
+    if (observerLat < -90.0 || observerLat > 90.0)
+    {
+        throw std::out_of_range("OrbitFetcher::DataReceiver::getSatellitesAbove - observerLat must be between -90 and 90 degrees");
+    }
+
+    if (observerLon < -180.0 || observerLon > 180.0)
+    {
+        throw std::out_of_range("OrbitFetcher::DataReceiver::getSatellitesAbove - observerLon must be between -180 and 180 degrees");
+    }
+
+    if (searchRadius <= 0 || searchRadius > 90)
+    {
+        throw std::out_of_range("OrbitFetcher::DataReceiver::getSatellitesAbove - searchRadius must be between 0 and 90 degrees");
+    }
+
     ApiCallParameters apiCallParams;
     apiCallParams.apiKey = apiKey;
     apiCallParams.observerLat = observerLat;
@@ -158,7 +273,7 @@ OrbitFetcher::ResponseData::SatellitesAbove OrbitFetcher::DataReceiver::getSatel
     return callApi<ResponseData::SatellitesAbove>(ApiType::WhatsUp, apiCallParams);
 }
 
-const std::string OrbitFetcher::DataReceiver::createApiUrl(const ApiType apiType, const ApiCallParameters& apiCallParameters)
+std::string OrbitFetcher::DataReceiver::createApiUrl(const ApiType apiType, const ApiCallParameters& apiCallParameters)
 {
     auto apiRequestTemplate = getApiRequestTemplate(apiType);
 
@@ -262,17 +377,24 @@ int OrbitFetcher::DataReceiver::makeCurlRequest(const std::string& apiCallUrl)
 {
     if (!curl) 
     {
-        std::cout << "curl nullptr" << std::endl;
-        return -1;
+        throw std::runtime_error("DataReceiver::DataReceiver::makeCurlRequest - curl is nullptr");
     }
-    
-    CURLcode code{};    
-    code = curl_easy_setopt(curl, CURLOPT_URL, apiCallUrl.c_str());
-    code = curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, DataReceiver::writeCallback);
-    code = curl_easy_setopt(curl, CURLOPT_WRITEDATA, this);
-    code = curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 
-    CURLcode res = curl_easy_perform(curl);    
+    CURLcode code{};
+
+    try
+    {
+        code = curl_easy_setopt(curl, CURLOPT_URL, apiCallUrl.c_str());
+        code = curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, DataReceiver::writeCallback);
+        code = curl_easy_setopt(curl, CURLOPT_WRITEDATA, this);
+        code = curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+    } catch (...)
+    {
+        throw std::runtime_error("OrbitFetcher::DataReceiver::makeCurlRequest " + apiCallUrl + " - curl_easy_setopt failed: " + std::to_string(code));
+    }
+
+
+    const CURLcode res = curl_easy_perform(curl);
     return res;
 }
 

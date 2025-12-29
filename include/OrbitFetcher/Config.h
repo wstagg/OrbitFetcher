@@ -6,9 +6,9 @@ namespace OrbitFetcher
     struct ConfigValues
     {
         std::string apiKey{};
-        float observerLat{};
-        float observerLon{};
-        float observerAlt{};
+        double observerLat{};
+        double observerLon{};
+        double observerAlt{};
         int searchRadius{};
         int noradId{};
         int satelliteCategory{};
@@ -31,8 +31,6 @@ namespace OrbitFetcher
         }
     };
 
-
-
     class Config
     {
     public:
@@ -41,7 +39,7 @@ namespace OrbitFetcher
         const ConfigValues& getConfigValues();
 
     private:
-        void setConfigValue(const std::string& option, const std::string& value, int& totalConfigValuesSet);
+        void setConfigValue(const std::string& option, const std::string& value);
         ConfigValues configValues;
     };
 }

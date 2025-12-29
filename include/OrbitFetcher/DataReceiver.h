@@ -87,7 +87,7 @@ namespace OrbitFetcher
 
         template<typename T>
         T callApi(const ApiType apiType, const ApiCallParameters& apiCallParameters);
-        const std::string createApiUrl(const ApiType apiType, const ApiCallParameters& apiCallParameters);
+        std::string createApiUrl(const ApiType apiType, const ApiCallParameters& apiCallParameters);
         int makeCurlRequest(const std::string& apiCallUrl);
         static size_t writeCallback(char *ptr, size_t size, size_t nmemb, void *userdata);
         std::string getApiRequestTemplate(const ApiType apiType);
