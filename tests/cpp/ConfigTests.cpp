@@ -12,3 +12,8 @@ BOOST_AUTO_TEST_CASE(testConfigReadInvalidFilePath)
     OrbitFetcher::Config config{};
     BOOST_CHECK_THROW(config.read(""), std::runtime_error);
 };
+
+BOOST_AUTO_TEST_CASE(testApiKeyMissingValue)
+{
+
+}
