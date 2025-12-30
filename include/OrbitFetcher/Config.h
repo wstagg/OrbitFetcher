@@ -17,7 +17,7 @@ namespace OrbitFetcher
         int minVisibility{};
         int minElevation{};
 
-        bool operator == (const ConfigValues& configValues2)
+        bool operator == (const ConfigValues& configValues2) const
         {
             return (this->apiKey == configValues2.apiKey &&
                     this->observerLat == configValues2.observerLat &&

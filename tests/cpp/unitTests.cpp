@@ -160,3 +160,193 @@ BOOST_FIXTURE_TEST_CASE(testConfigFileMinElevationInvalidCharacters, ConfigTestF
     writeTestConfigFile("MIN_ELEVATION = 30abc");
     BOOST_CHECK_THROW(config.read(fileName), std::invalid_argument);
 };
+
+BOOST_FIXTURE_TEST_CASE(testConfigFileObserverLatInvalidFormat, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("OBSERVER_LAT = abcd");
+    BOOST_CHECK_THROW(config.read(fileName), std::invalid_argument);
+};
+
+BOOST_FIXTURE_TEST_CASE(testConfigFileObserverLonInvalidFormat, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("OBSERVER_LON = abcd");
+    BOOST_CHECK_THROW(config.read(fileName), std::invalid_argument);
+};
+
+BOOST_FIXTURE_TEST_CASE(testConfigFileObserverAltInvalidFormat, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("OBSERVER_ALT = abcd");
+    BOOST_CHECK_THROW(config.read(fileName), std::invalid_argument);
+};
+
+BOOST_FIXTURE_TEST_CASE(testConfigFileSearchRadInvalidFormat, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("SEARCH_RAD = abcd");
+    BOOST_CHECK_THROW(config.read(fileName), std::invalid_argument);
+};
+
+BOOST_FIXTURE_TEST_CASE(testConfigFileNoradIdInvalidFormat, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("NORAD_ID = abcd");
+    BOOST_CHECK_THROW(config.read(fileName), std::invalid_argument);
+};
+
+BOOST_FIXTURE_TEST_CASE(testConfigFileSearchCategoryInvalidFormat, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("SEARCH_CATEGORY = abcd");
+    BOOST_CHECK_THROW(config.read(fileName), std::invalid_argument);
+};
+
+BOOST_FIXTURE_TEST_CASE(testConfigFileSecondsInvalidFormat, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("SECONDS = abcd");
+    BOOST_CHECK_THROW(config.read(fileName), std::invalid_argument);
+};
+
+BOOST_FIXTURE_TEST_CASE(testConfigFileDaysInvalidFormat, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("DAYS = abcd");
+    BOOST_CHECK_THROW(config.read(fileName), std::invalid_argument);
+};
+
+BOOST_FIXTURE_TEST_CASE(testConfigFileMinVisibilityInvalidFormat, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("MIN_VISIBILITY = abcd");
+    BOOST_CHECK_THROW(config.read(fileName), std::invalid_argument);
+};
+
+BOOST_FIXTURE_TEST_CASE(testConfigFileMinElevationInvalidFormat, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("MIN_ELEVATION = abcd");
+    BOOST_CHECK_THROW(config.read(fileName), std::invalid_argument);
+};
+
+BOOST_FIXTURE_TEST_CASE(testConfigFileObserverLatTooLow, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("OBSERVER_LAT = -91.0");
+    BOOST_CHECK_THROW(config.read(fileName), std::out_of_range);
+};
+
+BOOST_FIXTURE_TEST_CASE(testConfigFileObserverLatTooHigh, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("OBSERVER_LAT = 91.0");
+    BOOST_CHECK_THROW(config.read(fileName), std::out_of_range);
+};
+
+// OBSERVER_LON: -180 to 180
+BOOST_FIXTURE_TEST_CASE(testConfigFileObserverLonTooLow, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("OBSERVER_LON = -181.0");
+    BOOST_CHECK_THROW(config.read(fileName), std::out_of_range);
+};
+
+BOOST_FIXTURE_TEST_CASE(testConfigFileObserverLonTooHigh, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("OBSERVER_LON = 181.0");
+    BOOST_CHECK_THROW(config.read(fileName), std::out_of_range);
+};
+
+// SEARCH_RAD: 0 to 90
+BOOST_FIXTURE_TEST_CASE(testConfigFileSearchRadTooLow, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("SEARCH_RAD = -1");
+    BOOST_CHECK_THROW(config.read(fileName), std::out_of_range);
+};
+
+BOOST_FIXTURE_TEST_CASE(testConfigFileSearchRadTooHigh, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("SEARCH_RAD = 91");
+    BOOST_CHECK_THROW(config.read(fileName), std::out_of_range);
+};
+
+// SEARCH_CATEGORY: 0 to 57
+BOOST_FIXTURE_TEST_CASE(testConfigFileSearchCategoryTooLow, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("SEARCH_CATEGORY = -1");
+    BOOST_CHECK_THROW(config.read(fileName), std::out_of_range);
+};
+
+BOOST_FIXTURE_TEST_CASE(testConfigFileSearchCategoryTooHigh, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("SEARCH_CATEGORY = 58");
+    BOOST_CHECK_THROW(config.read(fileName), std::out_of_range);
+};
+
+// SECONDS: 0 to 300 (actually > 0, so lowest invalid is 0)
+BOOST_FIXTURE_TEST_CASE(testConfigFileSecondsTooLow, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("SECONDS = 0");
+    BOOST_CHECK_THROW(config.read(fileName), std::out_of_range);
+};
+
+BOOST_FIXTURE_TEST_CASE(testConfigFileSecondsTooHigh, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("SECONDS = 301");
+    BOOST_CHECK_THROW(config.read(fileName), std::out_of_range);
+};
+
+// DAYS: 0 to 10 (actually > 0, so lowest invalid is 0)
+BOOST_FIXTURE_TEST_CASE(testConfigFileDaysTooLow, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("DAYS = 0");
+    BOOST_CHECK_THROW(config.read(fileName), std::out_of_range);
+};
+
+BOOST_FIXTURE_TEST_CASE(testConfigFileDaysTooHigh, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("DAYS = 11");
+    BOOST_CHECK_THROW(config.read(fileName), std::out_of_range);
+};
+
+// MIN_ELEVATION: 0 to 360 (actually > 0, so lowest invalid is 0)
+BOOST_FIXTURE_TEST_CASE(testConfigFileMinElevationTooLow, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("MIN_ELEVATION = 0");
+    BOOST_CHECK_THROW(config.read(fileName), std::out_of_range);
+};
+
+BOOST_FIXTURE_TEST_CASE(testConfigFileMinElevationTooHigh, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("MIN_ELEVATION = 361");
+    BOOST_CHECK_THROW(config.read(fileName), std::out_of_range);
+};
+
+// MIN_VISIBILITY: must be > 0 (no upper bound)
+BOOST_FIXTURE_TEST_CASE(testConfigFileMinVisibilityTooLow, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("MIN_VISIBILITY = 0");
+    BOOST_CHECK_THROW(config.read(fileName), std::invalid_argument);
+};
+
+// NORAD_ID: must be > 0 (no upper bound)
+BOOST_FIXTURE_TEST_CASE(testConfigFileNoradIdTooLow, ConfigTestFixture)
+{
+    OrbitFetcher::Config config{};
+    writeTestConfigFile("NORAD_ID = 0");
+    BOOST_CHECK_THROW(config.read(fileName), std::invalid_argument);
+};
