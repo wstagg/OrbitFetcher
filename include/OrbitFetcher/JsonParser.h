@@ -14,9 +14,6 @@ namespace OrbitFetcher
         void parse(const OrbitFetcher::ApiType &apiType, const std::string_view& dataString, T& responseData);
 
     private:
-        const OrbitFetcher::ApiType apiType{};
-        const std::string_view data{};
-
         void parseTle(const std::string_view& dataString, ResponseData::Tle& tle);
         void parseSatellitePositions(const std::string_view& dataString, ResponseData::SatellitePosition& satellitePosition);
         void parseVisualPass(const std::string_view& dataString, ResponseData::SatelliteVisualPass& satelliteVisualPass);
