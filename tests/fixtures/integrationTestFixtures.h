@@ -36,7 +36,7 @@ struct DataReceiverFixture
 
     DataReceiverFixture()
     {
-        config.read("../config.txt");
+        config.read("orbitFetcherConfig.txt");
         apiKey = config.getConfigValues().apiKey;
         dataReceiver = std::make_unique<OrbitFetcher::DataReceiver>();
     }
