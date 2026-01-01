@@ -70,5 +70,8 @@ target_link_libraries(OrbitFetcherTests ${LIBS})
 
 add_test(NAME OrbitFetcherTests COMMAND OrbitFetcherTests)
 
-file(COPY ${CMAKE_SOURCE_DIR}/orbitFetcherConfig.txt
-        DESTINATION ${CMAKE_BINARY_DIR})
+# copies the orbitFetcherConfig.txt to the build dir
+add_custom_command(TARGET OrbitFetcherTests POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy
+        ${CMAKE_SOURCE_DIR}/orbitFetcherConfig.txt
+        $<TARGET_FILE_DIR:OrbitFetcherTests>)
