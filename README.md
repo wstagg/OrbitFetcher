@@ -57,27 +57,93 @@ After successfully compiling the following will be built:
 - OrbitFetcherTests
 - OrbitFetcher.so
 
-### Windows (in work)
-....
+### Windows
+
+#### Installing Dependencies with vcpkg
+
+This project uses vcpkg for dependency management on Windows. Follow the [official vcpkg installation guide](https://learn.microsoft.com/en-us/vcpkg/get_started/get_started?pivots=shell-powershell) to set up vcpkg on your system.
+
+Once vcpkg is installed, install the required packages:
+
+```
+vcpkg install curl
+```
+
+```
+vcpkg install boost-python
+```
+
+```
+vcpkg install boost-test
+```
+
+```
+vcpkg install nlohmann-json
+```
+
+**Note:** The latest version of Python 3 available through vcpkg is currently 3.12. This is the maximum Python version supported for building Python bindings on Windows.
+
+#### Building the Project
+
+After installing dependencies, navigate to the project directory in PowerShell or Command Prompt and run one of the following build configuration commands:
+
+Debug with Python bindings:
+
+```
+cmake -B build -DCMAKE_TOOLCHAIN_FILE=[path to vcpkg]/scripts/buildsystems/vcpkg.cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_PY_BINDINGS=ON
+```
+
+Debug without Python bindings:
+
+```
+cmake -B build -DCMAKE_TOOLCHAIN_FILE=[path to vcpkg]/scripts/buildsystems/vcpkg.cmake -DCMAKE_BUILD_TYPE=Debug
+```
+
+Release with Python bindings:
+
+```
+cmake -B build -DCMAKE_TOOLCHAIN_FILE=[path to vcpkg]/scripts/buildsystems/vcpkg.cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_PY_BINDINGS=ON
+```
+
+Release without Python bindings:
+
+```
+cmake -B build -DCMAKE_TOOLCHAIN_FILE=[path to vcpkg]/scripts/buildsystems/vcpkg.cmake -DCMAKE_BUILD_TYPE=Release
+```
+
+Once configuration is complete, build the project:
+
+```
+cmake --build build --config Debug
+```
+
+or for Release builds:
+
+```
+cmake --build build --config Release
+```
+
+After successfully compiling, the following will be built:
+- OrbitFetcherTests.exe
+- OrbitFetcher.pyd (if Python bindings are enabled)
+- Required .dll files
 
 ## Running tests
 
 1. After successfully compiling, you need to make an account at [N2YO.com](https://www.n2yo.com/) to generate your API key.
 
-2. In the root directory of the repository make a copy of the "config_template.txt" and rename it to "config.txt".
+3. In the build directory, open the orbitFetcherConfig.txt file and replace ```**YOUR API KEY HERE**``` with your API key and save the file.
 
-3. Open the config.txt file and replace ```**YOUR API KEY HERE**``` with your API key and save the file.
-
-4. In the terminal change directories to "build" and run: ``` ./OrbitFetcherTests```
+4. Run: ``` OrbitFetcherTests```
 
 ## How to use
 
 Using the library is very simple. There are two ways to instantiate the parameters needed for the API calls:
 
-1. Use the config.txt file.
-1. Directly pass API call parameters into the function calls.
+1. Use the orbitFetcherConfig.txtfile.
+2. Directly pass API call parameters into the function calls.
 
-### Using the config.txt
+### Using the orbitFetcherConfig.txt
 
 ```cpp
 #include "OrbitFetcher/Config.h"
@@ -88,8 +154,8 @@ int main()
     // Create a Config object 
     OrbitFetcher::Config config;
 
-    // Pass in the path to the config.txt file to be read
-    config.read("./config.txt");
+    // Pass in the path to your orbitFetcherConfig.txt file to be read
+    config.read("orbitFetcherConfig.txt);
 
     // Create an instance of the DataReceiver and pass the config object into the constructor 
     OrbitFetcher::DataReceiver receiver(config);
@@ -166,7 +232,7 @@ int main()
 {
     OrbitFetcher::Config config;
 
-    config.read("./config.txt");
+    config.read("orbitFetcherConfig.txt");
 
     // Get API key from config file
     auto apiKey = config.getConfigValues().apiKey;
@@ -175,27 +241,38 @@ int main()
 
 ### Response Data
 
-Each function call returns a ```OrbitFetcher::ResponseData``` struct that holds all the information from the API call, ready for you to use at your disposal.
+Each function call returns a ```OrbitFetcher::ResponseData``` struct that holds all the data from the respective API call. 
 
 
 ## Python
 Using the library with python is super simple. Build the library with ```--DBUILD_PY_BINDINGS=ON```. 
 
-Copy the OrbitFetcher.so file and the config.txt file into the root dir of your python project, and you are good to go!
+### Linux
+Copy the OrbitFetcher.so file and the orbitFetcherConfig.txt file into the root dir of your python project.
 
 ```
-├── config.txt
+├── orbitFetcherConfig.txt
 ├── main.py
 └── OrbitFetcher.so
 ```
-
-**Example using config.txt:**
+### Windows
+Copy the OrbitFetcher.pyd, orbitFetcherConfig.txt and all the .dll files from your build directory into the root dir of your python project.
+```
+├── orbitFetcherConfig.txt
+├── main.py
+├── OrbitFetcher.pyd
+├── boost_python312-vc145-mt-x64-1_90.dll
+├── libcurl.dll
+├── python312.dll
+└── zlib1.dll
+```
+**Example using orbitFetcherConfig.txt**
 ```python
 import OrbitFetcher
 
 config = OrbitFetcher.Config()
 
-config.read("config.txt")
+config.read("orbitFetcherConfig.txt")
 
 dataReceiver = OrbitFetcher.DataReceiver(config)
 

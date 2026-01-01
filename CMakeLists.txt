@@ -36,6 +36,10 @@ target_include_directories(OrbitFetcher PUBLIC
 
 set_target_properties(OrbitFetcher PROPERTIES PREFIX "")
 
+if (BUILD_PY_BINDINGS AND WIN32)
+    set_target_properties(OrbitFetcher PROPERTIES SUFFIX ".pyd")
+endif ()
+
 set (LIBS
     CURL::libcurl
     nlohmann_json::nlohmann_json
@@ -65,3 +69,6 @@ target_include_directories(OrbitFetcherTests PRIVATE
 target_link_libraries(OrbitFetcherTests ${LIBS})
 
 add_test(NAME OrbitFetcherTests COMMAND OrbitFetcherTests)
+
+file(COPY ${CMAKE_SOURCE_DIR}/orbitFetcherConfig.txt
+        DESTINATION ${CMAKE_BINARY_DIR})

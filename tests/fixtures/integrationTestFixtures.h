@@ -10,7 +10,7 @@ struct DataReceiverWithConfigFileFixture
 
     DataReceiverWithConfigFileFixture()
     {
-        config.read("../config.txt");
+        config.read("orbitFetcherConfig.txt");
         dataReceiver = std::make_unique<OrbitFetcher::DataReceiver>(config);
     }
 
