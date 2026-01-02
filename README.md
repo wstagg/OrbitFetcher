@@ -186,9 +186,9 @@ int main()
 {
     const std::string apiKey {"abcd-1234-efgh-5678"};
     const int noradId {25544};
-    const float observerLat {50.96081305800268};
-    const float observerLon {-0.11800587771065109};
-    const float observerAlt {0.0};
+    const double observerLat {50.96081305800268};
+    const double observerLon {-0.11800587771065109};
+    const double observerAlt {0.0};
     const int searchRadius {90};
     const OrbitFetcher::SearchCategory searchCategory {OrbitFetcher::SearchCategory::All};
     const int seconds {10};
