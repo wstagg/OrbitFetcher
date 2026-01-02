@@ -11,7 +11,7 @@ namespace OrbitFetcher
         JsonParser() = default;
 
         template<typename T>
-        void parse(const OrbitFetcher::ApiType &apiType, const std::string_view& dataString, T& responseData);
+        void parse(const std::string_view& dataString, T& responseData);
 
     private:
         void parseTle(const std::string_view& dataString, ResponseData::Tle& tle);
@@ -22,7 +22,7 @@ namespace OrbitFetcher
     };
 
     template <typename T>
-    inline void JsonParser::parse(const OrbitFetcher::ApiType &apiType, const std::string_view& dataString, T& responseData)
+    inline void JsonParser::parse(const std::string_view& dataString, T& responseData)
     {
         if constexpr(std::is_same_v<T, ResponseData::Tle>)
         {

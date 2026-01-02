@@ -21,7 +21,8 @@ set(SOURCES
     cpp/DataReceiver.cpp
     cpp/Config.cpp
     cpp/JsonParser.cpp
-    cpp/TleParser.cpp)
+    cpp/TleParser.cpp
+    cpp/Utilities.cpp)
 
 if (BUILD_PY_BINDINGS)
     find_package(Boost REQUIRED COMPONENTS python)
@@ -60,7 +61,8 @@ add_executable(OrbitFetcherTests
         cpp/Config.cpp
         cpp/JsonParser.cpp
         cpp/TleParser.cpp
-        tests/cpp/integrationTests.cpp)
+        tests/cpp/integrationTests.cpp
+        cpp/Utilities.cpp)
 
 target_include_directories(OrbitFetcherTests PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include

@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "OrbitFetcher/Utilities.h"
 
 namespace OrbitFetcher::ResponseData
 {
@@ -62,15 +63,15 @@ namespace OrbitFetcher::ResponseData
         double declination;
         int timeStamp;
 
-        bool operator == (const PositionData& positionData2)
+        bool operator == (const PositionData& positionData2) const
         {
-            return (this->lat == positionData2.lat &&
-                    this->lon == positionData2.lon &&
-                    this->altKm == positionData2.altKm &&
-                    this->azimuth == positionData2.azimuth &&
-                    this->elevation == positionData2.elevation &&
-                    this->rightAscension == positionData2.rightAscension &&
-                    this->declination == positionData2.declination &&
+            return (OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->lat, positionData2.lat, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps) &&
+                    OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->lon, positionData2.lon, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps) &&
+                    OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->altKm, positionData2.altKm, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps) &&
+                    OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->azimuth, positionData2.azimuth, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps) &&
+                    OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->elevation, positionData2.elevation, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps) &&
+                    OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->rightAscension, positionData2.rightAscension, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps) &&
+                    OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->declination, positionData2.declination, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps) &&
                     this->timeStamp == positionData2.timeStamp);
         }
     };
@@ -100,21 +101,21 @@ namespace OrbitFetcher::ResponseData
         double maxVisualMagnitude;
         int visibleDuration;
 
-        bool operator == (const VisualPassData& visualPassData2)
+        bool operator == (const VisualPassData& visualPassData2) const
         {
-            return (this->startAzimuth == visualPassData2.startAzimuth &&
+            return (OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->startAzimuth, visualPassData2.startAzimuth, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps) &&
                     this->startAzimuthCompass == visualPassData2.startAzimuthCompass &&
-                    this->startElevation == visualPassData2.startElevation &&
+                    OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->startElevation, visualPassData2.startElevation, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps)  &&
                     this->startUTC == visualPassData2.startUTC &&
-                    this->maxAzimuth == visualPassData2.maxAzimuth &&
+                    OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->maxAzimuth, visualPassData2.maxAzimuth, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps)  &&
                     this->maxAzimuthCompass == visualPassData2.maxAzimuthCompass &&
-                    this->maxElevation == visualPassData2.maxElevation &&
+                    OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->maxElevation, visualPassData2.maxElevation, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps)  &&
                     this->maxUTC == visualPassData2.maxUTC &&
-                    this->endAzimuth == visualPassData2.endAzimuth &&
+                    OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->endAzimuth, visualPassData2.endAzimuth, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps)  &&
                     this->endAzimuthCompass == visualPassData2.endAzimuthCompass &&
-                    this->endElevation == visualPassData2.endElevation &&
+                    OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->endElevation, visualPassData2.endElevation, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps)  &&
                     this->endUTC == visualPassData2.endUTC &&
-                    this->maxVisualMagnitude == visualPassData2.maxVisualMagnitude &&
+                    OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->maxVisualMagnitude, visualPassData2.maxVisualMagnitude, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps)  &&
                     this->visibleDuration == visualPassData2.visibleDuration
             );
         }
@@ -142,16 +143,16 @@ namespace OrbitFetcher::ResponseData
         std::string endAzimuthCompass;
         int endUTC;
 
-        bool operator == (const RadioPassData& RadioPassData2)
+        bool operator == (const RadioPassData& RadioPassData2) const
         {
-            return (this->startAzimuth == RadioPassData2.startAzimuth &&
+            return (OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->startAzimuth, RadioPassData2.startAzimuth, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps)  &&
                     this->startAzimuthCompass == RadioPassData2.startAzimuthCompass &&
                     this->startUTC == RadioPassData2.startUTC &&
-                    this->maxAzimuth == RadioPassData2.maxAzimuth &&
+                    OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->maxAzimuth, RadioPassData2.maxAzimuth, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps) &&
                     this->maxAzimuthCompass == RadioPassData2.maxAzimuthCompass &&
-                    this->maxElevation == RadioPassData2.maxElevation &&
+                    OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->maxElevation, RadioPassData2.maxElevation, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps) &&
                     this->maxUTC == RadioPassData2.maxUTC &&
-                    this->endAzimuth == RadioPassData2.endAzimuth &&
+                    OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->endAzimuth, RadioPassData2.endAzimuth, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps) &&
                     this->endAzimuthCompass == RadioPassData2.endAzimuthCompass &&
                     this->endUTC == RadioPassData2.endUTC);
         }
@@ -176,15 +177,15 @@ namespace OrbitFetcher::ResponseData
         double lon;
         double altKm;
 
-        bool operator == (const SatelliteData& satelliteData2)
+        bool operator == (const SatelliteData& satelliteData2) const
         {
             return (this->satId == satelliteData2.satId &&
                     this->satName == satelliteData2.satName &&
                     this->internationalDesignator == satelliteData2.internationalDesignator &&
                     this->launchDate == satelliteData2.launchDate &&
-                    this->lat == satelliteData2.lat &&
-                    this->lon == satelliteData2.lon &&
-                    this->altKm == satelliteData2.altKm);
+                    OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->lat, satelliteData2.lat, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps) &&
+                    OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->lon, satelliteData2.lon, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps) &&
+                    OrbitFetcher::Utilities::approximatelyEqualAbsRel(this->altKm, satelliteData2.altKm, OrbitFetcher::Utilities::absEps, OrbitFetcher::Utilities::relEps));
         }
     };
 

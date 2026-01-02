@@ -105,11 +105,11 @@ namespace OrbitFetcher
             dataString.clear();
         }
 
-        auto apiUrl = createApiUrl(apiType, apiCallParameters);
+        const auto apiUrl = createApiUrl(apiType, apiCallParameters);
 
-        auto res = makeCurlRequest(apiUrl);
+        const auto res = makeCurlRequest(apiUrl);
 
-        if (!res == CURLcode::CURLE_OK)
+        if (res != CURLcode::CURLE_OK)
         {
             throw std::runtime_error("CURL request failed for " + apiUrl + ", error code: " + std::to_string(res));
         }
@@ -123,7 +123,7 @@ namespace OrbitFetcher
         {
             T responseData{};
             JsonParser jsonParser;
-            jsonParser.parse(apiType, dataString, responseData);
+            jsonParser.parse(dataString, responseData);
             return responseData;
         }
         catch(const std::exception& e)
