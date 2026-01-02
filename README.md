@@ -158,19 +158,19 @@ int main()
     // Create an instance of the DataReceiver and pass the config object into the constructor 
     OrbitFetcher::DataReceiver receiver(config);
 
-    // Get TLE using config.txt configuration
+    // Get TLE using orbitFetcherConfig.txt configuration
     OrbitFetcher::ResponseData::Tle tle = receiver.getTle();
 
-    // Get satellite position data using config.txt configuration
+    // Get satellite position data using orbitFetcherConfig.txt configuration
     OrbitFetcher::ResponseData::SatellitePosition satellitePosition = receiver.getSatellitePosition();
 
-    // Get satellite visual pass data using config.txt configuration
+    // Get satellite visual pass data using orbitFetcherConfig.txt configuration
     OrbitFetcher::ResponseData::SatelliteVisualPass visualPass = receiver.getSatelliteVisualPass();
 
-    // Get satellite radio pass data using config.txt configuration
+    // Get satellite radio pass data using orbitFetcherConfig.txt configuration
     OrbitFetcher::ResponseData::SatelliteRadioPass radioPass = receiver.getSatelliteRadioPass();
 
-    // Get satellites above using config.txt configuration
+    // Get satellites above using orbitFetcherConfig.txt configuration
     OrbitFetcher::ResponseData::SatellitesAbove satellitesAbove = receiver.getSatellitesAbove();
     
 }
@@ -288,7 +288,7 @@ import OrbitFetcher
 
 dataReceiver = OrbitFetcher.DataReceiver()
 
-tle = dataReceiver.getTle("589P8Q-SDRYX8-L842ZD-5Z9", 25544)
+tle = dataReceiver.getTle("abcd-1234-efgh-5678", 25544)
 
 print(tle.tleStr)
     
