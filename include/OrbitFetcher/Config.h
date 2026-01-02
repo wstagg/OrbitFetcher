@@ -16,19 +16,6 @@ namespace OrbitFetcher
         int days{};
         int minVisibility{};
         int minElevation{};
-
-        bool operator == (const ConfigValues& configValues2) const
-        {
-            return (this->apiKey == configValues2.apiKey &&
-                    this->observerLat == configValues2.observerLat &&
-                    this->observerLon == configValues2.observerLon &&
-                    this->observerAlt == configValues2.observerAlt &&
-                    this->searchRadius == configValues2.searchRadius &&
-                    this->seconds == configValues2.seconds &&
-                    this->days == configValues2.days &&
-                    this->minVisibility == configValues2.minVisibility &&
-                    this->minElevation == configValues2.minElevation);
-        }
     };
 
     class Config
