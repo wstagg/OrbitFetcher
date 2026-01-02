@@ -1,4 +1,4 @@
-# OrbitFetcher
+hi# OrbitFetcher
 
 ## What it is
 
@@ -186,7 +186,7 @@ int main()
 
 int main()
 {
-    const std::string apiKey {"589P8Q-SDRYX8-L842ZD-5Z9"};
+    const std::string apiKey {"abcd-1234-efgh-5678"};
     const int noradId {25544};
     const float observerLat {50.96081305800268};
     const float observerLon {-0.11800587771065109};
