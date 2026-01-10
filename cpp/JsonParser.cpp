@@ -3,6 +3,16 @@
 #include "nlohmann/json.hpp"
 
 
+void OrbitFetcher::JsonParser::checkForErrors(const std::string_view &dataString)
+{
+    nlohmann::json json = nlohmann::json::parse(dataString);
+
+    if (json.contains("error"))
+    {
+        throw std::runtime_error(json.at("error").get<std::string>());
+    }
+}
+
 void OrbitFetcher::JsonParser::parseTle(const std::string_view& dataString, ResponseData::Tle& tle)
 {
     nlohmann::json json = nlohmann::json::parse(dataString);

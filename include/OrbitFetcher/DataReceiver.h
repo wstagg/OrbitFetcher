@@ -121,6 +121,8 @@ namespace OrbitFetcher
 
         try
         {
+            JsonParser::checkForErrors(dataString);
+
             T responseData{};
             JsonParser jsonParser;
             jsonParser.parse(dataString, responseData);
@@ -128,7 +130,7 @@ namespace OrbitFetcher
         }
         catch(const std::exception& e)
         {
-            throw std::runtime_error( "failed to parse JSON from api request: " + apiUrl + " " + e.what());
+            throw std::runtime_error( "Failed to parse JSON from api request: " + apiUrl + ". Error:: " + e.what());
         }
     }
 }
