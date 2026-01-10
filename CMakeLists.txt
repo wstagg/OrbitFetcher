@@ -54,23 +54,30 @@ endif ()
 
 target_link_libraries(OrbitFetcher ${LIBS})
 
+# Unit tests
 add_executable(OrbitFetcherTests
-        tests/cpp/OrbitFetcherTestsMain.cpp
         tests/cpp/unitTests.cpp
-        cpp/DataReceiver.cpp
-        cpp/Config.cpp
-        cpp/JsonParser.cpp
-        cpp/TleParser.cpp
-        tests/cpp/integrationTests.cpp
-        cpp/Utilities.cpp)
+        tests/cpp/OrbitFetcherTestsMain.cpp)
 
 target_include_directories(OrbitFetcherTests PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${CMAKE_CURRENT_SOURCE_DIR}/tests/fixtures)
 
-target_link_libraries(OrbitFetcherTests ${LIBS})
+target_link_libraries(OrbitFetcherTests OrbitFetcher)
+
+# Integration tests
+add_executable(OrbitFetcherIntegrationTests
+        tests/cpp/OrbitFetcherTestsMain.cpp
+        tests/cpp/integrationTests.cpp)
+
+target_include_directories(OrbitFetcherIntegrationTests PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/tests/fixtures)
+
+target_link_libraries(OrbitFetcherIntegrationTests OrbitFetcher)
 
 add_test(NAME OrbitFetcherTests COMMAND OrbitFetcherTests)
+add_test(NAME OrbitFetcherIntegrationTests COMMAND OrbitFetcherIntegrationTests)
 
 # copies the orbitFetcherConfig.txt to the build dir
 add_custom_command(TARGET OrbitFetcherTests POST_BUILD
