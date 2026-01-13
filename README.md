@@ -88,25 +88,25 @@ After installing dependencies, navigate to the project directory in PowerShell o
 Debug with Python bindings:
 
 ```
-cmake -B build -DCMAKE_TOOLCHAIN_FILE=[path to vcpkg]/scripts/buildsystems/vcpkg.cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_PY_BINDINGS=ON
+cmake -B build -DCMAKE_TOOLCHAIN_FILE=[path to vcpkg]\scripts\buildsystems\vcpkg.cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_PY_BINDINGS=ON
 ```
 
 Debug without Python bindings:
 
 ```
-cmake -B build -DCMAKE_TOOLCHAIN_FILE=[path to vcpkg]/scripts/buildsystems/vcpkg.cmake -DCMAKE_BUILD_TYPE=Debug
+cmake -B build -DCMAKE_TOOLCHAIN_FILE=[path to vcpkg]\scripts\buildsystems\vcpkg.cmake -DCMAKE_BUILD_TYPE=Debug
 ```
 
 Release with Python bindings:
 
 ```
-cmake -B build -DCMAKE_TOOLCHAIN_FILE=[path to vcpkg]/scripts/buildsystems/vcpkg.cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_PY_BINDINGS=ON
+cmake -B build -DCMAKE_TOOLCHAIN_FILE=[path to vcpkg]\scripts\buildsystems\vcpkg.cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_PY_BINDINGS=ON
 ```
 
 Release without Python bindings:
 
 ```
-cmake -B build -DCMAKE_TOOLCHAIN_FILE=[path to vcpkg]/scripts/buildsystems/vcpkg.cmake -DCMAKE_BUILD_TYPE=Release
+cmake -B build -DCMAKE_TOOLCHAIN_FILE=[path to vcpkg]\scripts\buildsystems\vcpkg.cmake -DCMAKE_BUILD_TYPE=Release
 ```
 
 Once configuration is complete, build the project:
@@ -129,10 +129,10 @@ After successfully compiling, the following will be built:
 ## Running tests
 
 1. After successfully compiling, you need to make an account at [N2YO.com](https://www.n2yo.com/) to generate your API key.
+2. In the build directory, open the orbitFetcherConfig.txt file and replace ```**YOUR API KEY HERE**``` with your API key and save the file.
+3. Run: ``` OrbitFetcherTests```
+4. Run: ```OrbitFetcherIntegrationTests```
 
-3. In the build directory, open the orbitFetcherConfig.txt file and replace ```**YOUR API KEY HERE**``` with your API key and save the file.
-
-4. Run: ``` OrbitFetcherTests```
 
 ## How to use
 
