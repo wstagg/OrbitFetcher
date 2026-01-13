@@ -1,7 +1,6 @@
 #include <boost/test/unit_test.hpp> 
 #include "../../include/OrbitFetcher/Config.h"
-#include "unitTestFixtures.h"
-#include "OrbitFetcher/DataReceiver.h"
+#include "ConfigTestFixture.h"
 
 BOOST_AUTO_TEST_CASE(testConfigFileReadValidFilePath)
 {

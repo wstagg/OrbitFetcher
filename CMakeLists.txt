@@ -56,9 +56,9 @@ target_link_libraries(OrbitFetcher ${LIBS})
 
 # Unit tests
 add_executable(OrbitFetcherTests
-        tests/cpp/unitTests.cpp
         tests/cpp/OrbitFetcherTestsMain.cpp
-        tests/cpp/ConfigTests.cpp)
+        tests/cpp/ConfigTests.cpp
+        tests/cpp/DataReceiverTests.cpp)
 
 target_include_directories(OrbitFetcherTests PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include

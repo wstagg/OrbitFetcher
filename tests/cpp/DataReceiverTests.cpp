@@ -1,6 +1,6 @@
 #include <boost/test/unit_test.hpp> 
 #include "../../include/OrbitFetcher/Config.h"
-#include "unitTestFixtures.h"
+#include "ConfigTestFixture.h"
 #include "OrbitFetcher/DataReceiver.h"
 
 BOOST_AUTO_TEST_CASE(testDataReceiverGetTleEmtpyApiKey)
