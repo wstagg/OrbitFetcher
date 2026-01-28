@@ -58,7 +58,8 @@ target_link_libraries(OrbitFetcher ${LIBS})
 add_executable(OrbitFetcherTests
         tests/cpp/OrbitFetcherTestsMain.cpp
         tests/cpp/ConfigTests.cpp
-        tests/cpp/DataReceiverTests.cpp)
+        tests/cpp/DataReceiverTests.cpp
+        tests/cpp/TleParserTests.cpp)
 
 target_include_directories(OrbitFetcherTests PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include

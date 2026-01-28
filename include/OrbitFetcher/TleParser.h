@@ -9,11 +9,11 @@ namespace OrbitFetcher
     public:
         TleParser() = default;
         static ResponseData::TleData parseTleString(const std::string& tleString);
+        static double parseTleExponentialField(const std::string& field);
 
     private:
         static OrbitFetcher::ResponseData::TleLineOne parseLineOne(const std::string& lineOneStr);
         static OrbitFetcher::ResponseData::TleLineTwo parseLineTwo(const std::string& lineTwoStr);
-
         static constexpr std::size_t LINE_ONE_LEN {69};
         static constexpr std::size_t LINE_TWO_LEN {69};
     };
