@@ -3,13 +3,27 @@
 #include "nlohmann/json.hpp"
 
 
-void OrbitFetcher::JsonParser::checkForErrors(const std::string_view &dataString)
+void OrbitFetcher::JsonParser::checkForResponseErrors(const std::string_view &dataString)
 {
     nlohmann::json json = nlohmann::json::parse(dataString);
 
+    // Check for any returned errors in response
     if (json.contains("error"))
     {
         throw std::runtime_error(json.at("error").get<std::string>());
+    }
+    if (json.contains("info"))
+    {
+        auto info = json.at("info");
+
+        if (info.contains("satname"))
+        {
+            // Check if the satname in "info" has returned "UNKNOWN"
+            if (info.at("satname").get<std::string>() == "UNKNOWN")
+            {
+                throw std::runtime_error("Satellite name is unknown : invalid NORAD ID: " + json.at("satid").get<std::string>());
+            }
+        }
     }
 }
 

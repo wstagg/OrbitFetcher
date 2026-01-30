@@ -11,7 +11,7 @@ namespace OrbitFetcher
         JsonParser() = default;
         template<typename T>
         void parse(const std::string_view& dataString, T& responseData);
-        static void checkForErrors(const std::string_view& dataString);
+        static void checkForResponseErrors(const std::string_view& dataString);
     private:
         static void parseTle(const std::string_view& dataString, ResponseData::Tle& tle);
         static void parseSatellitePositions(const std::string_view& dataString, ResponseData::SatellitePosition& satellitePosition);

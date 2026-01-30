@@ -121,7 +121,7 @@ namespace OrbitFetcher
 
         try
         {
-            JsonParser::checkForErrors(dataString);
+            JsonParser::checkForResponseErrors(dataString);
 
             T responseData{};
             JsonParser jsonParser;

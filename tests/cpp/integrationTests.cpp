@@ -73,6 +73,16 @@ BOOST_FIXTURE_TEST_CASE(testGetSatellitesAbove, DataReceiverFixture)
     BOOST_TEST(satellitesAbove.satelliteCount >= 0);
 };
 
+BOOST_FIXTURE_TEST_CASE(testInvalidApiKeyResponseError, DataReceiverFixture)
+{
+    BOOST_CHECK_THROW(dataReceiver->getTle("abcdef", noradId), std::runtime_error);
+}
+
+BOOST_FIXTURE_TEST_CASE(testInvalidNoradIdKeyResponseError, DataReceiverFixture)
+{
+    BOOST_CHECK_THROW(dataReceiver->getTle(apiKey, 999999), std::runtime_error);
+}
+
 BOOST_FIXTURE_TEST_CASE(testGetTleUsingConfigFile, DataReceiverWithConfigFileFixture)
 {
     auto tle = dataReceiver->getTle();
