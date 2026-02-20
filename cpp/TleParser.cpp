@@ -4,11 +4,15 @@
 #include <string>
 #include <stdexcept>
 
-OrbitFetcher::ResponseData::TleData OrbitFetcher::TleParser::parseTleString(const std::string& tleString)
+OrbitFetcher::ResponseData::TleData OrbitFetcher::TleParser::parseTleString(const std::string& tleString, std::string& inLineOne, std::string& inLineTwo)
 {
     const auto endOfLineOnePos = tleString.find_first_of('\r');
     auto lineOne = tleString.substr(0, endOfLineOnePos);
     auto lineTwo = tleString.substr(endOfLineOnePos + 2);
+
+    // set tle.strings one and two
+    inLineOne = lineOne;
+    inLineTwo = lineTwo;
 
     const auto lineOneData = parseLineOne(lineOne);
     const auto lineTwoData = parseLineTwo(lineTwo);

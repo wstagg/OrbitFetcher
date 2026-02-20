@@ -178,11 +178,16 @@ BOOST_PYTHON_MODULE(OrbitFetcher)
         .def_readonly("tleLineOne", &OrbitFetcher::ResponseData::TleData::tleLineOne)
         .def_readonly("tleLineTwo", &OrbitFetcher::ResponseData::TleData::tleLineTwo);
 
+    boost::python::class_<OrbitFetcher::ResponseData::TleStrings>("TleStrings")
+        .def_readonly("lineOne", &OrbitFetcher::ResponseData::TleStrings::lineOne)
+        .def_readonly("lineTow", &OrbitFetcher::ResponseData::TleStrings::lineTwo)
+        .def_readonly("complete", &OrbitFetcher::ResponseData::TleStrings::complete);
+
     boost::python::class_<OrbitFetcher::ResponseData::Tle>("Tle")
         .def_readonly("satId", &OrbitFetcher::ResponseData::Tle::satId)
         .def_readonly("satName", &OrbitFetcher::ResponseData::Tle::satName)
         .def_readonly("transactionCount", &OrbitFetcher::ResponseData::Tle::transactionCount)
-        .def_readonly("tleStr", &OrbitFetcher::ResponseData::Tle::tleStr)
+        .def_readonly("tleStrings", &OrbitFetcher::ResponseData::Tle::tleStrings)
         .def_readonly("tleData", &OrbitFetcher::ResponseData::Tle::tleData);
 
     boost::python::class_<OrbitFetcher::ResponseData::PositionData>("PositionData")

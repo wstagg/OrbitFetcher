@@ -8,7 +8,7 @@ namespace OrbitFetcher
     {
     public:
         TleParser() = default;
-        static ResponseData::TleData parseTleString(const std::string& tleString);
+        static ResponseData::TleData parseTleString(const std::string& tleString, std::string& inLineOne, std::string& inLineTwo);
         static double parseTleExponentialField(const std::string& field);
 
     private:

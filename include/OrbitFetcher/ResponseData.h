@@ -43,12 +43,19 @@ namespace OrbitFetcher::ResponseData
         TleLineTwo tleLineTwo;
     };
 
+    struct TleStrings
+    {
+        std::string lineOne;
+        std::string lineTwo;
+        std::string complete;
+    };
+
     struct Tle
     {
         int satId;
         std::string satName;
         int transactionCount;
-        std::string tleStr;
+        TleStrings tleStrings;
         TleData tleData;
     };
 

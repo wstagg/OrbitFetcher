@@ -22,26 +22,34 @@ BOOST_AUTO_TEST_CASE(testParseTleExponentialFieldDoubleDigitExponent)
 
 BOOST_AUTO_TEST_CASE(testLineOneToLong)
 {
+    std::string lineOne{};
+    std::string lineTwo{};
     std::string tle{"1 25544U 98067A   18077.09047010  .00001878  00000-0  35621-4 0  9999 \r\n2 25544  51.6412 112.8495 0001928 208.4187 178.9720 15.54106440104358"};
-    BOOST_CHECK_THROW(OrbitFetcher::TleParser::parseTleString(tle), std::runtime_error);
+    BOOST_CHECK_THROW(OrbitFetcher::TleParser::parseTleString(tle, lineOne, lineTwo ), std::runtime_error);
 }
 
 BOOST_AUTO_TEST_CASE(testLineOneToShort)
 {
+    std::string lineOne{};
+    std::string lineTwo{};
     std::string tle{"1 25544U 98067A   18077.09047010  .00001878  00000-0  35621-4 0  999\r\n2 25544  51.6412 112.8495 0001928 208.4187 178.9720 15.54106440104358"};
-    BOOST_CHECK_THROW(OrbitFetcher::TleParser::parseTleString(tle), std::runtime_error);
+    BOOST_CHECK_THROW(OrbitFetcher::TleParser::parseTleString(tle, lineOne, lineTwo), std::runtime_error);
 }
 
 BOOST_AUTO_TEST_CASE(testTwoOneToLong)
 {
+    std::string lineOne{};
+    std::string lineTwo{};
     const std::string tle{"1 25544U 98067A   18077.09047010  .00001878  00000-0  35621-4 0  9999\r\n2 25544  51.6412 112.8495 0001928 208.4187 178.9720 15.54106440104358 "};
-    BOOST_CHECK_THROW(OrbitFetcher::TleParser::parseTleString(tle), std::runtime_error);
+    BOOST_CHECK_THROW(OrbitFetcher::TleParser::parseTleString(tle, lineOne, lineTwo), std::runtime_error);
 }
 
 BOOST_AUTO_TEST_CASE(testLineTwoToShort)
 {
+    std::string lineOne{};
+    std::string lineTwo{};
     const std::string tle{"1 25544U 98067A   18077.09047010  .00001878  00000-0  35621-4 0  9999\r\n2 25544  51.6412 112.8495 0001928 208.4187 178.9720 15.5410644010435"};
-    BOOST_CHECK_THROW(OrbitFetcher::TleParser::parseTleString(tle), std::runtime_error);
+    BOOST_CHECK_THROW(OrbitFetcher::TleParser::parseTleString(tle, lineOne, lineTwo), std::runtime_error);
 }
 
 // Line One Tests
@@ -164,4 +172,14 @@ BOOST_FIXTURE_TEST_CASE(checkTleLineTwoTotalRevolutionsAtEpoch, TleParserFixture
 BOOST_FIXTURE_TEST_CASE(checkTleLineTwoCheckSum, TleParserFixture)
 {
     BOOST_CHECK_EQUAL(tleData.tleLineTwo.checkSum, 8);
+}
+
+BOOST_FIXTURE_TEST_CASE(checkTleLineOneString, TleParserFixture)
+{
+    BOOST_CHECK_EQUAL(lineOneString, "1 25544U 98067A   18077.09047010  .00001878  00000-0  35621-4 0  9999");
+}
+
+BOOST_FIXTURE_TEST_CASE(checkTleLineTwoString, TleParserFixture)
+{
+    BOOST_CHECK_EQUAL(lineTwoString, "2 25544  51.6412 112.8495 0001928 208.4187 178.9720 15.54106440104358");
 }
