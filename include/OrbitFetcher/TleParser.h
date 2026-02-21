@@ -8,12 +8,18 @@ namespace OrbitFetcher
     {
     public:
         TleParser() = default;
-        static ResponseData::TleData parseTleString(const std::string& tleString, std::string& inLineOne, std::string& inLineTwo);
+
+        explicit TleParser(const std::string& _tleString);
+        void parseTle(const std::string& tleString);
         static double parseTleExponentialField(const std::string& field);
+        [[nodiscard]] const ResponseData::TleStrings getTleStrings() const;
+        [[nodiscard]] const ResponseData::TleData getTleData() const;
 
     private:
-        static OrbitFetcher::ResponseData::TleLineOne parseLineOne(const std::string& lineOneStr);
-        static OrbitFetcher::ResponseData::TleLineTwo parseLineTwo(const std::string& lineTwoStr);
+        ResponseData::TleStrings tleStrings{};
+        ResponseData::TleData tleData{};
+        static ResponseData::TleLineOne parseLineOne(const std::string& lineOneStr);
+        static ResponseData::TleLineTwo parseLineTwo(const std::string& lineTwoStr);
         static constexpr std::size_t LINE_ONE_LEN {69};
         static constexpr std::size_t LINE_TWO_LEN {69};
     };

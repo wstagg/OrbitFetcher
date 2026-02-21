@@ -4,20 +4,27 @@
 #include <string>
 #include <stdexcept>
 
-OrbitFetcher::ResponseData::TleData OrbitFetcher::TleParser::parseTleString(const std::string& tleString, std::string& inLineOne, std::string& inLineTwo)
+OrbitFetcher::TleParser::TleParser(const std::string &_tleString)
+{
+    parseTle(_tleString);
+}
+
+void OrbitFetcher::TleParser::parseTle(const std::string& tleString)
 {
     const auto endOfLineOnePos = tleString.find_first_of('\r');
-    auto lineOne = tleString.substr(0, endOfLineOnePos);
-    auto lineTwo = tleString.substr(endOfLineOnePos + 2);
 
-    // set tle.strings one and two
-    inLineOne = lineOne;
-    inLineTwo = lineTwo;
+    // split tle into two line strings
+    const auto lineOne = tleString.substr(0, endOfLineOnePos);
+    const auto lineTwo = tleString.substr(endOfLineOnePos + 2);
 
-    const auto lineOneData = parseLineOne(lineOne);
-    const auto lineTwoData = parseLineTwo(lineTwo);
+    // fill ResponseData::TleString struct with strings
+    tleStrings.complete = tleString;
+    tleStrings.lineOne = lineOne;
+    tleStrings.lineTwo = lineTwo;
 
-    return {lineOneData, lineTwoData};
+    // fill tleData struct with parsed lines
+    tleData.tleLineOne = parseLineOne(lineOne);
+    tleData.tleLineTwo = parseLineTwo(lineTwo);
 }
 
 OrbitFetcher::ResponseData::TleLineOne OrbitFetcher::TleParser::parseLineOne(const std::string &lineOneStr)
@@ -115,4 +122,14 @@ double OrbitFetcher::TleParser::parseTleExponentialField(const std::string &fiel
     const double mantissa = std::stod(zero) * mantissaSign;
 
     return mantissa * (std::pow(10.0, exponent));
+}
+
+const OrbitFetcher::ResponseData::TleStrings OrbitFetcher::TleParser::getTleStrings() const
+{
+    return tleStrings;
+}
+
+const OrbitFetcher::ResponseData::TleData OrbitFetcher::TleParser::getTleData() const
+{
+    return tleData;
 }
